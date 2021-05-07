@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import ReactDOMServer from 'react-dom/server';
 
 import { Tutorial } from './Tutorial.jsx';
+import { Board } from './organisms/board/Board.jsx';
 
 // any css-in-js or other libraries you want to use server-side
 import { ServerStyleSheet } from 'styled-components';
@@ -15,4 +16,4 @@ global.ReactDOMServer = ReactDOMServer;
 global.Styled = { ServerStyleSheet };
 global.Helmet = Helmet;
 
-global.Components = { Tutorial};
+global.Components = { Tutorial, Board };
