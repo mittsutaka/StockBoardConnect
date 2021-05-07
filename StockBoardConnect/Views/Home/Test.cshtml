@@ -1,0 +1,9 @@
+﻿@{
+    var styledComponentsFunctions = new StyledComponentsFunctions();
+}
+@Html.React("Components.Tutorial", new { exampleProp = "a" }, renderFunctions: new ChainedRenderFunctions(styledComponentsFunctions))
+
+@{
+    ViewBag.ServerStyles = styledComponentsFunctions.RenderedStyles;
+    ViewBag.Title = "TEST";
+}
