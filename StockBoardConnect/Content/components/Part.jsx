@@ -1,9 +1,8 @@
 ﻿import React from 'react';
 import styled from 'styled-components';
-import { Part } from './Part.jsx';
 
 const BlueTitle = styled.h1`
-    color: #222;
+    color: red;
     font-family: Helvetica, 'sans-serif';
     text-shadow: 0 0 5px lightgray;
     line-height: 2;
@@ -19,17 +18,14 @@ const BlueTitle = styled.h1`
     }
 `;
 
-export function Tutorial() {
+export function Part() {
     return (
-        <div>
-            <Part />
-            <BlueTitle>
-                Hello from{' '}
-                <a href="https://github.com/styled-components/styled-components">
-                    styled-components
-                </a>
-                !
-            </BlueTitle>
-        </div>
+        <BlueTitle>
+            こんにちは from{' '}
+            <a href="https://github.com/styled-components/styled-components">
+                styled-components
+            </a>
+            !
+        </BlueTitle>
     )
 }

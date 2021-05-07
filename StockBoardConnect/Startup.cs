@@ -44,6 +44,28 @@ namespace StockBoardConnect
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseReact(config =>
+            {
+                // If you want to use server-side rendering of React components,
+                // add all the necessary JavaScript files here. This includes
+                // your components as well as all of their dependencies.
+                // See http://reactjs.net/ for more information. Example:
+
+                // If you use an external build too (for example, Babel, Webpack,
+                // Browserify or Gulp), you can improve performance by disabling
+                // ReactJS.NET's version of Babel and loading the pre-transpiled
+                // scripts. Example:
+
+                config
+                    .SetLoadBabel(false)
+                    .SetLoadReact(false)
+                    .SetReactAppBuildPath("~/dist");
+
+                //config
+                //  .SetLoadBabel(false)
+                //  .AddScriptWithoutTransform("~/js/bundle.server.js");
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -57,31 +79,6 @@ namespace StockBoardConnect
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
-            app.UseReact(config =>
-            {
-                // If you want to use server-side rendering of React components,
-                // add all the necessary JavaScript files here. This includes
-                // your components as well as all of their dependencies.
-                // See http://reactjs.net/ for more information. Example:
-                config
-                  .AddScript("~/js/Tutorial.jsx");
-
-                // If you use an external build too (for example, Babel, Webpack,
-                // Browserify or Gulp), you can improve performance by disabling
-                // ReactJS.NET's version of Babel and loading the pre-transpiled
-                // scripts. Example:
-
-                config
-                    .SetReuseJavaScriptEngines(true)
-                    .SetLoadBabel(false)
-                    .SetLoadReact(false)
-                    .SetReactAppBuildPath("~/dist");
-
-                //config
-                //  .SetLoadBabel(false)
-                //  .AddScriptWithoutTransform("~/js/bundle.server.js");
-            });
 
             app.UseRouting();
 

@@ -4,12 +4,3 @@
 @using React.AspNet
 @using React.RenderFunctions
 
-@{
-    var styledComponentsFunctions = new StyledComponentsFunctions();
-}
-
-@Html.React("RootComponent", new { exampleProp = "a" }, renderFunctions: new ChainedRenderFunctions(styledComponentsFunctions))
-
-@{
-    ViewBag.ServerStyles = styledComponentsFunctions.RenderedStyles;
-}
