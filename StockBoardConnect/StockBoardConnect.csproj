@@ -6,22 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Content\components\Part.jsx" />
-    <None Remove="Content\components\Tutorial.jsx" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Content\components\Part.jsx">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Content\components\Tutorial.jsx">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="JavaScriptEngineSwitcher.Extensions.MsDependencyInjection" Version="3.3.0" />
     <PackageReference Include="JavaScriptEngineSwitcher.V8" Version="3.12.1" />
     <PackageReference Include="JavaScriptEngineSwitcher.V8.Native.win-x64" Version="3.12.1" />

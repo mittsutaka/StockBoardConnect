@@ -3,7 +3,8 @@
   "name": "asp.net",
   "private": true,
   "scripts": {
-    "build": "rimraf wwwroot/dist && webpack"
+    "build": "rimraf wwwroot/dist && webpack",
+    "watch": "rimraf wwwroot/dist && webpack --watch"
   },
   "dependencies": {
     "react": "^16.8.2",
