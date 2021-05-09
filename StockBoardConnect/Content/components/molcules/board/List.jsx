@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-    width: 25%;
+    width: ${props=>props.width}
     border-right: 1px solid #e5e5e5;
     padding: 8px
 `;
@@ -42,9 +42,9 @@ const data = [{
     name: 'NPC'
 }];
 
-export function List() {
+export function List(props) {
     return (
-        <Wrapper>
+        <Wrapper width={props.width}>
             {
                 data.map((t) => {
                     return (

@@ -12,8 +12,8 @@ const Wrapper = styled.div`
 export function Board() {
     return (
         <Wrapper>
-            <List />
-            <BoardMain></BoardMain>
+            <List width="25%"/>
+            <BoardMain width="75%" />
         </Wrapper>
     )
 }
