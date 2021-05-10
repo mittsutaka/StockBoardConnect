@@ -1,10 +1,12 @@
 ﻿@model int
 @{
     var styledComponentsFunctions = new StyledComponentsFunctions();
+    var helmetFunctions = new ReactHelmetFunctions();
 }
-@Html.React("Components.Board", new { id = Model }, renderFunctions: new ChainedRenderFunctions(styledComponentsFunctions))
+@Html.React("Components.Board", new { id = Model }, renderFunctions: new ChainedRenderFunctions(styledComponentsFunctions,helmetFunctions))
 
 @{
     ViewBag.ServerStyles = styledComponentsFunctions.RenderedStyles;
-    ViewBag.Title = "ボード";
+    ViewBag.HelmetStyle = helmetFunctions.RenderedHelmet?.GetValueOrDefault("style");
+    ViewBag.Title = "Board";
 }

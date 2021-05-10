@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-    width: ${props=>props.width}
+    width: ${props => props.width}
     border-right: 1px solid #e5e5e5;
     padding: 8px
 `;
@@ -28,7 +28,7 @@ const data = [{
 },
 {
     number: 4488,
-    type:'マザーズ',
+    type: 'マザーズ',
     name: 'AI inside（株）'
 },
 {
@@ -46,9 +46,9 @@ export function List(props) {
     return (
         <Wrapper width={props.width}>
             {
-                data.map((t) => {
+                data.map((t, i) => {
                     return (
-                        <Item>
+                        <Item key={i}>
                             <BoardNumber>{t.number}</BoardNumber>
                             {t.name}
                         </Item>

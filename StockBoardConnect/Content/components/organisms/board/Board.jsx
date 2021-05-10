@@ -2,6 +2,7 @@
 import styled from 'styled-components';
 import { List } from '../../molcules/board/List.jsx';
 import { BoardMain } from '../../molcules/board/BoardMain.jsx';
+import Helmet from 'react-helmet';
 
 const Wrapper = styled.div`
     display: flex;
@@ -12,7 +13,7 @@ const Wrapper = styled.div`
 export function Board() {
     return (
         <Wrapper>
-            <List width="25%"/>
+            <List width="25%" />
             <BoardMain width="75%" />
         </Wrapper>
     )
