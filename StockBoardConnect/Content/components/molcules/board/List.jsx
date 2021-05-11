@@ -2,7 +2,6 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-    width: ${props => props.width}
     border-right: 1px solid #e5e5e5;
     padding: 8px
 `;
@@ -44,7 +43,7 @@ const data = [{
 
 export function List(props) {
     return (
-        <Wrapper width={props.width}>
+        <Wrapper>
             {
                 data.map((t, i) => {
                     return (

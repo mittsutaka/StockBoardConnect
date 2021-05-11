@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactDOMServer from 'react-dom/server';
-import * as Components from './index.jsx';
+import * as Components from './index.js';
 
 import { ServerStyleSheet } from 'styled-components';
 import Helmet from 'react-helmet';

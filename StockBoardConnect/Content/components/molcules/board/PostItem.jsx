@@ -1,6 +1,5 @@
 ﻿import React from 'react';
 import styled from 'styled-components';
-import { Icon } from '../../atoms/Icon.jsx';
 
 const Wrapper = styled.div`
     width: 100%;
@@ -79,8 +78,8 @@ export function PostItem(props) {
                 <Commands>
                     <Reply>返信</Reply>
                     <Actions>
-                        <IconNumber margin="0 0 4px 0" padding="0 8px 0 0"><Icon size="20px" margin="0 4px 0 0" color="blue" value="thumb_up" />{props.postData.good}</IconNumber>
-                        <IconNumber padding="0 8px 0 0"><Icon size="20px" margin="0 4px 0 0" color="red" value="thumb_down" />{props.postData.bad}</IconNumber>
+                        <IconNumber margin="0 0 4px 0" padding="0 8px 0 0">{props.postData.good}</IconNumber>
+                        <IconNumber padding="0 8px 0 0">{props.postData.bad}</IconNumber>
                     </Actions>
                 </Commands>
             </Body>

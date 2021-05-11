@@ -2,7 +2,7 @@
 @{
     var styledComponentsFunctions = new StyledComponentsFunctions();
 }
-@Html.React("Contents.Components.Board", new { id = Model }, renderFunctions: new ChainedRenderFunctions(styledComponentsFunctions))
+@Html.React("Contents.Components.BoardBoard", new { id = Model }, renderFunctions: new ChainedRenderFunctions(styledComponentsFunctions))
 
 @{
     ViewBag.ServerStyles = styledComponentsFunctions.RenderedStyles;

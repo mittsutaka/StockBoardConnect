@@ -1,0 +1,1 @@
+﻿export * from './templates/board/Board.jsx';

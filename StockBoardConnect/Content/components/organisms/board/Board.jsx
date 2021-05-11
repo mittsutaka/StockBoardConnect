@@ -1,19 +1,19 @@
 ﻿import React from 'react';
-import styled from 'styled-components';
 import { List } from '../../molcules/board/List.jsx';
 import { BoardMain } from '../../molcules/board/BoardMain.jsx';
-
-const Wrapper = styled.div`
-    display: flex;
-    flex-direction: row;
-    min-height: 640px;
-`
+import { Container,Grid } from '@material-ui/core';
 
 export function Board() {
     return (
-        <Wrapper>
-            <List width="25%" />
-            <BoardMain width="75%" />
-        </Wrapper>
+        <Container>
+            <Grid container>
+                <Grid item xs={3}>
+                    <List/>
+                </Grid>
+                <Grid item xs={9}>
+                    <BoardMain/>
+                </Grid>
+            </Grid>
+        </Container>
     )
 }

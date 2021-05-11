@@ -1,10 +1,8 @@
 ﻿import React from 'react';
 import styled from 'styled-components';
 import { PostItem } from './PostItem.jsx';
-import { Button } from '@material-ui/core';
 
 const Wrapper = styled.div`
-    width: ${props => props.width};
     padding: 8px;
 `;
 
@@ -52,7 +50,7 @@ const postsData = [{
 
 export function BoardMain(props) {
     return (
-        <Wrapper width={props.width}>
+        <Wrapper>
             {
                 postsData.map((t, i) => {
                     return (
@@ -60,7 +58,6 @@ export function BoardMain(props) {
                     )
                 })
             }
-            <Button>hello</Button>
         </Wrapper>
     )
 }
