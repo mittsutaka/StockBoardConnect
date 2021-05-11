@@ -35,6 +35,7 @@ namespace StockBoardConnect
             services.AddControllersWithViews();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddReact();
+            services.AddRazorPages().AddRazorRuntimeCompilation();
 
             // Make sure a JS engine is registered, or you will get an error!
             services.AddJsEngineSwitcher(options => options.DefaultEngineName = V8JsEngine.EngineName)

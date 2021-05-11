@@ -2,7 +2,6 @@
 import styled from 'styled-components';
 import { List } from '../../molcules/board/List.jsx';
 import { BoardMain } from '../../molcules/board/BoardMain.jsx';
-import Helmet from 'react-helmet';
 
 const Wrapper = styled.div`
     display: flex;
