@@ -24,7 +24,7 @@ export function Header() {
                     <MenuIcon />
                 </IconButton>
                 <Typography variant="h6" className={classes.title}>
-                    News
+                    Stock Board Connect
                 </Typography>
                 <Button color="inherit">Login</Button>
             </Toolbar>

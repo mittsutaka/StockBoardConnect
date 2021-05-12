@@ -26,6 +26,7 @@
     "babel-runtime": "6.26.0",
     "css-loader": "^5.2.4",
     "normalize.css": "^8.0.1",
+    "react-loading": "^2.0.3",
     "rimraf": "3.0.2",
     "style-loader": "^2.0.0",
     "webpack": "4.43.0",
