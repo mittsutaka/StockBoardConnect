@@ -1,11 +1,12 @@
 ﻿import React from 'react';
-import { AppBar, Toolbar, IconButton, Typography, Button } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import MenuIcon from '@material-ui/icons/Menu';
+import Color from '../../../consts/Color.js';
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1,
+    bar: {
+        backgroundColor: Color.WHITE,
+        color: Color.FONT
     },
     menuButton: {
         marginRight: theme.spacing(2),
@@ -18,11 +19,8 @@ const useStyles = makeStyles((theme) => ({
 export function Header() {
     const classes = useStyles();
     return (
-        <AppBar position="static">
+        <AppBar className={classes.bar} position="static">
             <Toolbar>
-                <IconButton edge="start" color="inherit" aria-label="menu" className={classes.menuButton}>
-                    <MenuIcon />
-                </IconButton>
                 <Typography variant="h6" className={classes.title}>
                     Stock Board Connect
                 </Typography>
