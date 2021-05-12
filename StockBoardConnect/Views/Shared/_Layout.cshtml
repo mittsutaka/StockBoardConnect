@@ -6,6 +6,9 @@
     <title>@ViewData["Title"] - StockBoardConnect</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     @Html.Raw(ViewBag.ServerStyles)
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/normalize.css" />
+    </environment>
 </head>
 <body>
     @RenderBody()

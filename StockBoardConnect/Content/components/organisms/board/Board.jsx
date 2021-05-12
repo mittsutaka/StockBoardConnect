@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import { List } from '../../molcules/board/List.jsx';
 import { BoardMain } from '../../molcules/board/BoardMain.jsx';
-import { Container,Grid } from '@material-ui/core';
+import { Container, Grid } from '@material-ui/core';
 
 export function Board() {
     return (

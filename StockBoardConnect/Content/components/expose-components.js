@@ -10,7 +10,7 @@ global.React = React;
 global.ReactDOM = ReactDOM;
 global.ReactDOMServer = ReactDOMServer;
 
-global.Styled = { ServerStyleSheet };
+global.Styled = { ServerStyleSheet};
 global.Helmet = Helmet;
 
 global.Contents = { Components };
