@@ -1,10 +1,17 @@
 ﻿import React from 'react';
-import styled from 'styled-components';
 import { PostItem } from './PostItem.jsx';
+import { Box, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
-const Wrapper = styled.div`
-    padding: 8px;
-`;
+const useStyles = makeStyles((theme) => ({
+    postItem: {
+        padding: '8px',
+    },
+    header: {
+        padding: '8px'
+    }
+}));
+
 
 const postsData = [{
     at: '2021/05/08 17:50:05',
@@ -36,7 +43,7 @@ const postsData = [{
 }, {
     at: '2021/05/08 18:09:59',
     message: '明日からは土日なので今日は静かな気がします。だけども、どうなるかはまったくわかりませんね。皆さん今日も楽しく。人生楽しく生きていきましょう。',
-    name: 'helloakachann',
+    name: '村尾光崇',
     good: 18,
     bad: 20
 }, {
@@ -45,19 +52,28 @@ const postsData = [{
     name: 'helloakachann',
     good: 18,
     bad: 20
-}
-];
+}, {
+    at: '2021/05/08 18:09:59',
+    message: '明日からは土日なので今日は静かな気がします。だけども、どうなるかはまったくわかりませんね。皆さん今日も楽しく。人生楽しく生きていきましょう。',
+    name: 'helloakachann',
+    good: 18,
+    bad: 20
+}];
 
 export function BoardMain(props) {
+    const classes = useStyles();
     return (
-        <Wrapper>
+        <>
+            <Box className={classes.header}>
+                <Typography variant='subtitle1'>スクロール</Typography>
+            </Box>
             {
                 postsData.map((t, i) => {
                     return (
-                        <PostItem postData={t} padding="8px" key={i}></PostItem>
+                        <Box className={classes.postItem} key={i}><PostItem postData={t}></PostItem></Box>
                     )
                 })
             }
-        </Wrapper>
+        </>
     )
 }

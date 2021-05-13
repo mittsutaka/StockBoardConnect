@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
         minHeight: "100vh"
     },
     side: {
-        flexGrow: 1,
         borderRight: `1px solid ${Color.BORDER}`
     }
 }));
@@ -30,7 +29,7 @@ export function Layout(props) {
                 <Header />
                 <Container className={classes.body}>
                     <Grid container>
-                        <Grid item xs={2} container>
+                        <Grid item xs={1} sm={2} container>
                             <SideMenu className={classes.side} />
                         </Grid>
                         <Grid item xs={10}>

@@ -19,12 +19,13 @@ const useStyles = makeStyles((theme) => ({
 export function Header() {
     const classes = useStyles();
     return (
-        <AppBar className={classes.bar} position="fixed">
+        <AppBar className={classes.bar} position='fixed'>
             <Toolbar>
-                <Typography variant="h6" className={classes.title}>
+                <Typography variant='h6' className={classes.title}>
                     Stock Board Connect
                 </Typography>
-                <Button color="inherit">Login</Button>
+                <Button color='primary'>要望はこちら</Button>
+                <Button color='inherit'>Login</Button>
             </Toolbar>
         </AppBar>
     )
