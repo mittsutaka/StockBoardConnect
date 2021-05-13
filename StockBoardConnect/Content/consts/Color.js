@@ -1,7 +1,8 @@
 ﻿export default Object.freeze({
     WHITE: '#fffffe',
-    FONT: '#5f6c7b',
+    FONT: '#0f1419',
     FONT_HEAD: '#094067',
     BUTTON: '#3da9fc',
-    BUTTO_TEXT: '#fffffe'
+    BUTTON_TEXT: '#fffffe',
+    BORDER: 'rgba(0,0,0,0.12)'
 })

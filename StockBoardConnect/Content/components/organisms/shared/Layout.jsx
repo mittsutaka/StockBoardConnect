@@ -4,11 +4,21 @@ import { SideMenu } from '../../molcules/shared/SideMenu.jsx';
 import { Grid, Container } from '@material-ui/core';
 import { Loading } from '../../molcules/shared/Loading.jsx';
 import { makeStyles } from '@material-ui/core/styles';
+import Color from '../../../consts/Color.js';
 
 const useStyles = makeStyles((theme) => ({
     main: {
-        //visibility: 'hidden'
+        //visibility: 'hidden',
+        color: Color.FONT
     },
+    body: {
+        paddingTop: "64px",
+        minHeight: "100vh"
+    },
+    side: {
+        flexGrow: 1,
+        borderRight: `1px solid ${Color.BORDER}`
+    }
 }));
 
 export function Layout(props) {
@@ -18,10 +28,10 @@ export function Layout(props) {
             <Loading />
             <div className={classes.main}>
                 <Header />
-                <Container>
+                <Container className={classes.body}>
                     <Grid container>
-                        <Grid item xs={2}>
-                            <SideMenu />
+                        <Grid item xs={2} container>
+                            <SideMenu className={classes.side} />
                         </Grid>
                         <Grid item xs={10}>
                             {props.children}

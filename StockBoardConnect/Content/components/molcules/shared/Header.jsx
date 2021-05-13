@@ -6,7 +6,7 @@ import Color from '../../../consts/Color.js';
 const useStyles = makeStyles((theme) => ({
     bar: {
         backgroundColor: Color.WHITE,
-        color: Color.FONT
+        color: Color.FONT,
     },
     menuButton: {
         marginRight: theme.spacing(2),
@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 export function Header() {
     const classes = useStyles();
     return (
-        <AppBar className={classes.bar} position="static">
+        <AppBar className={classes.bar} position="fixed">
             <Toolbar>
                 <Typography variant="h6" className={classes.title}>
                     Stock Board Connect
