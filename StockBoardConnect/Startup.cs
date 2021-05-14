@@ -35,6 +35,10 @@ namespace StockBoardConnect
             services.AddControllersWithViews();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddReact();
+            services.AddRazorPages().AddRazorRuntimeCompilation();
+            services.AddWebOptimizer(pipeline=> {
+                pipeline.AddCssBundle("/css/bundle.css", "css/**/*.css");
+            });
 
             // Make sure a JS engine is registered, or you will get an error!
             services.AddJsEngineSwitcher(options => options.DefaultEngineName = V8JsEngine.EngineName)
@@ -77,6 +81,9 @@ namespace StockBoardConnect
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseWebOptimizer();
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
