@@ -9,7 +9,6 @@ const useStyles = makeStyles((theme) => ({
     },
     text: {
         paddingLeft: theme.spacing(2),
-        whiteSpace:'nowrap'
     },
     item: {
         minHeight:theme.spacing(6)

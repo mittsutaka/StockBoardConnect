@@ -16,7 +16,11 @@ const useStyles = makeStyles((theme) => ({
         minHeight: "100vh"
     },
     side: {
-        borderRight: `1px solid ${Color.BORDER}`
+        borderRight: `1px solid ${Color.BORDER}`,
+        width: 'auto'
+    },
+    content: {
+        flex: 1
     }
 }));
 
@@ -28,11 +32,11 @@ export function Layout(props) {
             <div className={classes.main}>
                 <Header />
                 <Container className={classes.body}>
-                    <Grid container>
-                        <Grid item xs={1} sm={2} container>
-                            <SideMenu className={classes.side} />
+                    <Grid container wrap='nowrap'>
+                        <Grid item container className={classes.side} >
+                            <SideMenu />
                         </Grid>
-                        <Grid item xs={10}>
+                        <Grid item className={classes.content}>
                             {props.children}
                         </Grid>
                     </Grid>

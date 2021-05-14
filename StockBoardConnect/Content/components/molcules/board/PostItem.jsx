@@ -31,7 +31,10 @@ const useStyles = makeStyles((theme) => ({
     avator: {
         width: theme.spacing(3),
         height: theme.spacing(3),
-        marginRight:'4px'
+        marginRight: '4px'
+    },
+    iconButton: {
+        marginRight: '4px'
     }
 }));
 
@@ -53,15 +56,15 @@ export function PostItem(props) {
             </CardContent>
             <CardActions className={classes.bottom}>
                 <Box component='span' className={classes.thumb}>
-                    <IconButton size='small'><Icon fontSize='small'>thumb_up_alt</Icon></IconButton>
+                    <IconButton size='small' className={classes.iconButton}><Icon fontSize='small'>thumb_up_alt</Icon></IconButton>
                     <Typography variant='caption'>{props.postData.good}</Typography>
                 </Box>
                 <Box component='span' className={classes.thumb}>
-                    <IconButton size='small'><Icon fontSize='small'>thumb_down_alt</Icon></IconButton>
+                    <IconButton size='small' className={classes.iconButton}><Icon fontSize='small'>thumb_down_alt</Icon></IconButton>
                     <Typography variant='caption'>{props.postData.bad}</Typography>
                 </Box>
-                <Box component='span' className={classes.reply}>
-                    <Button size='small' startIcon={<Icon fontSize='small'>reply</Icon>}>返信</Button>
+                <Box component='span'>
+                    <Button size='small' startIcon={<Icon fontSize='small'>reply</Icon>} className={classes.reply}>返信</Button>
                 </Box>
             </CardActions>
         </Card>
