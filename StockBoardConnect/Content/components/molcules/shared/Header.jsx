@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import { AppBar, Toolbar, Typography, Button } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, Button, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Color from '../../../consts/Color.js';
 
@@ -20,13 +20,15 @@ export function Header() {
     const classes = useStyles();
     return (
         <AppBar className={classes.bar} position='fixed'>
-            <Toolbar>
-                <Typography variant='h6' className={classes.title}>
-                    Stock Board Connect
+            <Container>
+                <Toolbar>
+                    <Typography variant='h6' className={classes.title}>
+                        Stock Board Connect
                 </Typography>
-                <Button color='primary'>要望はこちら</Button>
-                <Button color='inherit'>Login</Button>
-            </Toolbar>
+                    <Button color='primary'>要望はこちら</Button>
+                    <Button color='inherit'>Login</Button>
+                </Toolbar>
+            </Container>
         </AppBar>
     )
 }

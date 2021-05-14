@@ -1,10 +1,6 @@
 ﻿@model int
-@{
-    var styledComponentsFunctions = new StyledComponentsFunctions();
-}
-@Html.React("Contents.Components.BoardBoard", new { id = Model }, renderFunctions: new ChainedRenderFunctions(styledComponentsFunctions))
+@Html.React("Contents.Components.BoardBoard", new { id = Model })
 
 @{
-    ViewBag.ServerStyles = styledComponentsFunctions.RenderedStyles;
     ViewBag.Title = "Board";
 }
