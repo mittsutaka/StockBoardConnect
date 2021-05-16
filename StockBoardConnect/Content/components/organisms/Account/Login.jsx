@@ -1,7 +1,8 @@
-﻿import React from 'react';
+﻿import React, { useContext } from 'react';
 import { TextField, Grid, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { AntiForgeryToken } from '../../atoms/AntiForgeryToken.jsx';
+import AppContext from '../../../contexts/AppContext.js';
 
 const useStyles = makeStyles((theme) => ({
     textField: {
@@ -20,13 +21,14 @@ const useStyles = makeStyles((theme) => ({
 
 export function Login(props) {
     const classes = useStyles();
+    const antiForgeryToken = useContext(AppContext);
     return (
         <Grid container className={classes.wrapper}>
             <Grid item xs={6} className={classes.left}>
             </Grid>
             <Grid container item xs={6} alignItems='center' justify='center'>
                 <Grid item xs={6} component='form' action='/Account/Login' method='post'>
-                    <AntiForgeryToken token={props.antiForgeryToken} />
+                    <AntiForgeryToken token={antiForgeryToken} />
                     <Grid item xs={12} className={classes.textField}>
                         <TextField id='Email' label='メールアドレス' variant='outlined' fullWidth name='Email' />
                     </Grid>
