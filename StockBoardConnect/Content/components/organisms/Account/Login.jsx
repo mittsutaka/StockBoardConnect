@@ -1,5 +1,5 @@
 ﻿import React, { useContext } from 'react';
-import { TextField, Grid, Button, Paper } from '@material-ui/core';
+import { TextField, Grid, Button, Paper, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { AntiForgeryToken } from '../../atoms/AntiForgeryToken.jsx';
 import AppContext from '../../../contexts/AppContext.js';
@@ -38,7 +38,7 @@ export function Login(props) {
                 </Grid>
             </Grid>
             <Grid container justify='center'>
-                <Button href='/account/register' color='primary'>新規アカウント登録</Button>
+                <Link href='/account/register' color='primary' variant='subtitle2'>新規アカウント登録</Link>
             </Grid>
         </Paper>
     )
