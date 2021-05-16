@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import { AppBar, Toolbar, Typography, Button, Container } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, Button, Container, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Color from '../../../consts/Color.js';
 
@@ -26,7 +26,7 @@ export function Header() {
                         Stock Board Connect
                 </Typography>
                     <Button color='primary'>要望はこちら</Button>
-                    <Button color='inherit'>Login</Button>
+                    <Link href='/Account/Login' color='primary'>Login</Link>
                 </Toolbar>
             </Container>
         </AppBar>

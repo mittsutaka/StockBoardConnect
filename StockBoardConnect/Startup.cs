@@ -10,7 +10,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using React.AspNet;
 using StockBoardConnect.Data;
-using StockBoardConnect.Models;
 using StockBoardConnect.Services;
 
 namespace StockBoardConnect
@@ -108,6 +107,10 @@ namespace StockBoardConnect
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapAreaControllerRoute(
+                    name: "Api",
+                    areaName: "Api",
+                    pattern: "Api/{controller=Home}/{id?}");
                 endpoints.MapRazorPages();
             });
         }
