@@ -71,9 +71,11 @@ namespace StockBoardConnect
                 // scripts. Example:
 
                 config
+                    .SetReuseJavaScriptEngines(true)
                     .SetLoadBabel(false)
                     .SetLoadReact(false)
-                    .SetReactAppBuildPath("~/dist");
+                    .SetReactAppBuildPath("~/dist")
+                    .DisableServerSideRendering();
 
                 //config
                 //  .SetLoadBabel(false)

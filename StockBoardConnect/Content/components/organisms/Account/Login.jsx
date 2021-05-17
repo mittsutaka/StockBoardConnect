@@ -8,9 +8,6 @@ const useStyles = makeStyles((theme) => ({
     textField: {
         padding: theme.spacing(2)
     },
-    adornment: {
-        backgroundColor: 'red'
-    },
     form: {
         minWidth: '400px',
         marginBottom: theme.spacing(1)
@@ -24,7 +21,7 @@ export function Login(props) {
     const classes = useStyles();
     const antiForgeryToken = useContext(AppContext);
     return (
-        <Paper className={classes.paper} elevation={1} square='true'>
+        <Paper className={classes.paper} elevation={1} square>
             <Grid className={classes.form} component='form' action='/Account/Login' method='post'>
                 <AntiForgeryToken token={antiForgeryToken} />
                 <Grid item xs={12} className={classes.textField}>
@@ -34,7 +31,7 @@ export function Login(props) {
                     <TextField id='Password' label='パスワード' variant='outlined' fullWidth name='Password' type='password' />
                 </Grid>
                 <Grid item xs={12} className={classes.textField}>
-                    <Button type='submit' variant='contained' color='primary' fullWidth>ログイン</Button>
+                    <Button type='submit' variant='contained' color='primary' fullWidth size='large'>ログイン</Button>
                 </Grid>
             </Grid>
             <Grid container justify='center'>

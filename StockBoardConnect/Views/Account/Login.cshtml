@@ -1,7 +1,4 @@
 ﻿@model LoginViewModel
-@inject IAntiforgery Antiforgery
 @{ ViewData["Title"] = "Log in"; }
-
-<form method="post"></form>
 
 @Html.React("Contents.Components.AccountLogin", new { antiForgeryToken = Antiforgery.GetAndStoreTokens(Context).RequestToken })
