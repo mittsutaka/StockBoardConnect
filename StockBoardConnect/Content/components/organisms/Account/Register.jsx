@@ -32,7 +32,7 @@ export function Register(props) {
                     <TextField id='Password' label='パスワード' variant='outlined' fullWidth name='Password' type='password' autoComplete='off' required />
                 </Grid>
                 <Grid item xs={12} className={classes.textField}>
-                    <TextField id='PasswordConfirm' label='パスワード確認' variant='outlined' fullWidth name='PasswordConfirm' type='password' required />
+                    <TextField id='ConfirmPassword' label='パスワード確認' variant='outlined' fullWidth name='ConfirmPassword' type='password' required />
                 </Grid>
                 <Grid item xs={12} className={classes.textField}>
                     <TextField id='DisplayName' label='表示名' variant='outlined' fullWidth name='DisplayName' required />
