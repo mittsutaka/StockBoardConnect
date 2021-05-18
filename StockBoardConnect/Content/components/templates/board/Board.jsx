@@ -2,7 +2,7 @@
 import { Board } from '../../organisms/board/Board.jsx';
 import { Layout } from '../../organisms/shared/Layout.jsx';
 
-export function BoardBoard() {
+export const BoardBoard = () => {
     return (
         <Layout>
             <Board />

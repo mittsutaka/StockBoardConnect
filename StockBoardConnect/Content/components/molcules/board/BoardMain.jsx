@@ -60,7 +60,7 @@ const postsData = [{
     bad: 20
 }];
 
-export function BoardMain(props) {
+export const BoardMain = (props) => {
     const classes = useStyles();
     return (
         <>

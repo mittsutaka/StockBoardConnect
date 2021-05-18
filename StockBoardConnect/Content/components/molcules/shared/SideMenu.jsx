@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
         paddingLeft: theme.spacing(2),
     },
     item: {
-        minHeight:theme.spacing(6)
+        minHeight: theme.spacing(6)
     }
 }));
 
@@ -41,7 +41,7 @@ const datas = [{
 },
 ];
 
-export function SideMenu(props) {
+export const SideMenu = (props) => {
     const classes = useStyles();
     return (
         <List className={props.className} component='nav'>

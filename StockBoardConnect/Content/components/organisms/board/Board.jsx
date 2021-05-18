@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export function Board() {
+export const Board = () => {
     const classes = useStyles();
     return (
         <Grid container wrap='nowrap'>

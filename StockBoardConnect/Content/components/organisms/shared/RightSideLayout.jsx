@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     right: {}
 }));
 
-export function RightSideLayout(props) {
+export const RightSideLayout = (props) => {
     const classes = useStyles();
     return (
         <Grid container className={classes.wrapper}>

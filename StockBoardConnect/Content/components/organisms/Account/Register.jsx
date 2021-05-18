@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export function Register(props) {
+export const Register = (props) => {
     const classes = useStyles();
     const antiForgeryToken = useContext(AppContext);
     return (

@@ -22,7 +22,7 @@ const data = [{
     name: 'NPC'
 }];
 
-export function BoardList(props) {
+export const BoardList = (props) => {
     return (
         <List>
             {
