@@ -118,10 +118,11 @@ namespace StockBoardConnect.Controllers
                     _logger.LogInformation(3, "User created a new account with password.");
                     return RedirectToLocal(returnUrl);
                 }
-                AddErrors(result);
+                model.ErrorMessage = result.Errors.Any(t => t.Code == "DuplicateUserName") ? "このメールアドレスは別のアカウントで使用されています。" : "登録が正常にできませんでした。";
+                return View(model);
             }
+            model.ErrorMessage = ModelState.Values.FirstOrDefault(t => t.Errors.Any())?.Errors.FirstOrDefault()?.ErrorMessage;
 
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
