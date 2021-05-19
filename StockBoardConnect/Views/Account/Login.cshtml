@@ -1,4 +1,4 @@
 ﻿@model LoginViewModel
 @{ ViewData["Title"] = "Log in"; }
 
-@Html.React("Contents.Components.AccountLogin", new { antiForgeryToken = Antiforgery.GetAndStoreTokens(Context).RequestToken })
+@Html.React("Contents.Components.AccountLogin", new { antiForgeryToken = Antiforgery.GetAndStoreTokens(Context).RequestToken, vm = JsonConvert.SerializeObject(Model) })

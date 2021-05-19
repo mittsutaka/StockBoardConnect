@@ -3,6 +3,7 @@ import { TextField, Grid, Button, Paper, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { AntiForgeryToken } from '../../atoms/AntiForgeryToken.jsx';
 import AppContext from '../../../contexts/AppContext.js';
+import { ErrorMessage } from '../../atoms/ErrorMessage.jsx';
 
 const useStyles = makeStyles((theme) => ({
     textField: {
@@ -29,7 +30,9 @@ export const Register = (props) => {
             <Typography variant='h6' align='center'>アカウント登録</Typography>
             <Grid className={classes.form} component='form' action='/Account/Register' method='post' autoComplete='off'>
                 <AntiForgeryToken token={antiForgeryToken} />
-                <Typography color='error' className={ classes.error}>{model?.ErrorMessage}</Typography>
+                <Grid item xs={12} className={classes.error}>
+                    <ErrorMessage text={model?.ErrorMessage} />
+                </Grid>
                 <Grid item xs={12} className={classes.textField}>
                     <TextField id='Email' label='メールアドレス' defaultValue={model?.Email} variant='outlined' fullWidth name='Email' autoComplete='new-password' required />
                 </Grid>

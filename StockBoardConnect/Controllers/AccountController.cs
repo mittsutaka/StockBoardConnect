@@ -75,12 +75,11 @@ namespace StockBoardConnect.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    model.ErrorMessage = "メールアドレスまたはパスワードが間違っています。";
                     return View(model);
                 }
             }
-
-            // If we got this far, something failed, redisplay form
+            model.ErrorMessage = ModelState.Values.FirstOrDefault(t => t.Errors.Any())?.Errors.FirstOrDefault()?.ErrorMessage;
             return View(model);
         }
 
