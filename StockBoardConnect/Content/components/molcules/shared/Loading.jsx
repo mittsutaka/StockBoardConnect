@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
         position: 'absolute',
         backgroundColor: '#fff',
         display: 'flex',
-        flexDirection:'column',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         zIndex: 1,
@@ -22,12 +22,12 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export function Loading() {
+export const Loading = () => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
             <ReactLoading type="spin" className={classes.loading} />
-            <Typography>now loading...</Typography> 
+            <Typography>now loading...</Typography>
         </div>
     )
 }

@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export function Layout(props) {
+export const Layout = (props) => {
     const classes = useStyles();
     return (
         <>

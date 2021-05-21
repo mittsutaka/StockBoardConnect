@@ -5,10 +5,10 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     postItem: {
-        padding: '8px',
+        padding: theme.spacing(1),
     },
     header: {
-        padding: '8px'
+        padding: theme.spacing(1)
     }
 }));
 
@@ -60,7 +60,7 @@ const postsData = [{
     bad: 20
 }];
 
-export function BoardMain(props) {
+export const BoardMain = (props) => {
     const classes = useStyles();
     return (
         <>

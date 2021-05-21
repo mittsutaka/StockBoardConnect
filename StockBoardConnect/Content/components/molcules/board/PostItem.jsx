@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export function PostItem(props) {
+export const PostItem = (props) => {
     const classes = useStyles();
     return (
         <Card className={classes.card}>

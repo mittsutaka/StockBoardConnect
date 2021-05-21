@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using React.AspNet;
 using StockBoardConnect.Data;
+using StockBoardConnect.Services;
 
 namespace StockBoardConnect
 {
@@ -30,19 +31,38 @@ namespace StockBoardConnect
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddMvc();
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+
             services.AddControllersWithViews();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddReact();
             services.AddRazorPages().AddRazorRuntimeCompilation();
-            services.AddWebOptimizer(pipeline=> {
+            services.AddWebOptimizer(pipeline =>
+            {
                 pipeline.AddCssBundle("/css/bundle.css", "css/**/*.css");
             });
 
             // Make sure a JS engine is registered, or you will get an error!
             services.AddJsEngineSwitcher(options => options.DefaultEngineName = V8JsEngine.EngineName)
               .AddV8();
+
+            // Add application services.
+            services.AddTransient<IEmailSender, AuthMessageSender>();
+            services.AddTransient<ISmsSender, AuthMessageSender>();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 0;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,9 +81,11 @@ namespace StockBoardConnect
                 // scripts. Example:
 
                 config
+                    .SetReuseJavaScriptEngines(true)
                     .SetLoadBabel(false)
                     .SetLoadReact(false)
-                    .SetReactAppBuildPath("~/dist");
+                    .SetReactAppBuildPath("~/dist")
+                    .DisableServerSideRendering();
 
                 //config
                 //  .SetLoadBabel(false)
@@ -97,6 +119,10 @@ namespace StockBoardConnect
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapAreaControllerRoute(
+                    name: "Api",
+                    areaName: "Api",
+                    pattern: "Api/{controller=Home}/{id?}");
                 endpoints.MapRazorPages();
             });
         }
