@@ -53,7 +53,6 @@ namespace StockBoardConnect
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
-
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequireDigit = false;
@@ -63,6 +62,13 @@ namespace StockBoardConnect
                 options.Password.RequiredLength = 6;
                 options.Password.RequiredUniqueChars = 0;
             });
+
+            services.Configure<RequestLocalizationOptions>(option =>
+            {
+                option.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("ja-JP");
+            });
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

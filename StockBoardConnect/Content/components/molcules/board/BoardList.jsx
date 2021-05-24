@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { List, ListItem, ListItemIcon, ListItemText, Typography } from '@material-ui/core';
 
 const data = [{
     number: 8005,
@@ -29,7 +29,8 @@ export const BoardList = (props) => {
                 data.map((t, i) => {
                     return (
                         <ListItem key={i} button>
-                            <ListItemText primary={`${t.number} - ${t.name} `} />
+                            <Typography variant="body2">{`${t.number} - ${t.name} `}</Typography>
+                            {/*<ListItemText secondary= />*/}
                         </ListItem>
                     )
                 })
