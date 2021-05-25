@@ -54,6 +54,7 @@ namespace StockBoardConnect
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
             services.AddTransient<ActionService>();
+            services.AddTransient<BoardService>();
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequireDigit = false;
