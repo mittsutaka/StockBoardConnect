@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StockBoardConnect.Data;
 
 namespace StockBoardConnect.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210524061318_AddCompanies")]
+    partial class AddCompanies
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -224,7 +226,7 @@ namespace StockBoardConnect.Data.Migrations
                     b.Property<string>("AlphabetName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Code")
+                    b.Property<int>("Code")
                         .HasColumnType("int");
 
                     b.Property<DateTimeOffset>("CreatedAt")
@@ -236,19 +238,19 @@ namespace StockBoardConnect.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ScaleCode")
+                    b.Property<int>("ScaleCode")
                         .HasColumnType("int");
 
                     b.Property<string>("ScaleCodeName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TypeCodeMain")
+                    b.Property<int>("TypeCodeMain")
                         .HasColumnType("int");
 
                     b.Property<string>("TypeCodeMainString")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TypeCodeSub")
+                    b.Property<int>("TypeCodeSub")
                         .HasColumnType("int");
 
                     b.Property<string>("TypeCodeSubString")

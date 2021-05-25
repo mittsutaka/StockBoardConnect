@@ -53,6 +53,7 @@ namespace StockBoardConnect
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.AddTransient<ActionService>();
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequireDigit = false;

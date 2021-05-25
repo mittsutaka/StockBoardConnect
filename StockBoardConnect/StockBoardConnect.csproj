@@ -26,6 +26,7 @@
     <Folder Include="Areas\Api\Data\" />
     <Folder Include="Areas\Api\Models\" />
     <Folder Include="Areas\Api\Views\" />
+    <Folder Include="Models\ViewModels\" />
     <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
