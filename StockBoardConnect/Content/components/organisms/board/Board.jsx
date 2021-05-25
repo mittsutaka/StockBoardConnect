@@ -6,10 +6,14 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     list: {
-        width: 'auto'
+        width: '240px'
     },
     main: {
         flex: 1
+    },
+    boardList: {
+        position: 'fixed',
+        width:'inherit'
     }
 }));
 
@@ -18,7 +22,7 @@ export const Board = () => {
     return (
         <Grid container wrap='nowrap'>
             <Grid item className={classes.list}>
-                <BoardList />
+                <BoardList className={classes.boardList} />
             </Grid>
             <Grid item className={classes.main}>
                 <BoardMain />

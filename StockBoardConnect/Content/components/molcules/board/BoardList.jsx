@@ -24,7 +24,7 @@ const data = [{
 
 export const BoardList = (props) => {
     return (
-        <List>
+        <List className={props.className}>
             {
                 data.map((t, i) => {
                     return (
