@@ -45,6 +45,9 @@ namespace StockBoardConnect.Data
         [JsonProperty("bad")]
         public int Bad { get; set; }
 
+        [NotMapped]
+        [JsonProperty("at")]
+        public string At { get; set; }
 
     }
 

@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
     },
     wrapper: {
         position: 'relative',
+        height: '100%'
     },
     postTextField: {
         backgroundColor: 'white',
@@ -36,34 +37,52 @@ const useStyles = makeStyles((theme) => ({
 
 
 const iniPosts = [{
-    createdAt: '2021/05/08 17:50:05',
+    at: '2021/05/08 17:50:05',
     text: 'こんにちは、今日も頑張りましょう。',
     userName: 'mittsutaka',
     good: 10,
     bad: 5
 },
 {
-    createdAt: '2021/05/08 17:57:29',
+    at: '2021/05/08 17:57:29',
     text: 'こんにちは、そんなこといったってどうなるかわからないですよね。',
     userName: 'suzuki keisuke',
     good: 100,
     bad: 2
 },
 {
-    createdAt: '2021/05/08 18:04:39',
+    at: '2021/05/08 18:04:39',
     text: '今日はいい地合いで楽しみですね。',
     userName: 'tensaiman',
     good: 13,
     bad: 2
 },
 {
-    createdAt: '2021/05/08 18:09:35',
+    at: '2021/05/08 18:09:35',
     text: '明日からは土日なので今日は静かな気がします。だけども、どうなるかはまったくわかりませんね。皆さん今日も楽しく。人生楽しく生きていきましょう。',
     userName: 'helloakachann',
     good: 18,
     bad: 20000
 }, {
-    createdAt: '2021/05/08 18:09:59',
+    at: '2021/05/08 18:09:59',
+    text: '明日からは土日なので今日は静かな気がします。だけども、どうなるかはまったくわかりませんね。皆さん今日も楽しく。人生楽しく生きていきましょう。',
+    userName: '村尾光崇',
+    good: 18,
+    bad: 20
+}, {
+    at: '2021/05/08 18:09:59',
+    text: '明日からは土日なので今日は静かな気がします。だけども、どうなるかはまったくわかりませんね。皆さん今日も楽しく。人生楽しく生きていきましょう。',
+    userName: '村尾光崇',
+    good: 18,
+    bad: 20
+}, {
+    at: '2021/05/08 18:09:59',
+    text: '明日からは土日なので今日は静かな気がします。だけども、どうなるかはまったくわかりませんね。皆さん今日も楽しく。人生楽しく生きていきましょう。',
+    userName: '村尾光崇',
+    good: 18,
+    bad: 20
+}, {
+    at: '2021/05/08 18:09:59',
     text: '明日からは土日なので今日は静かな気がします。だけども、どうなるかはまったくわかりませんね。皆さん今日も楽しく。人生楽しく生きていきましょう。',
     userName: '村尾光崇',
     good: 18,
@@ -73,16 +92,18 @@ const iniPosts = [{
 export const BoardMain = (props) => {
     const classes = useStyles();
     const [posts, setPosts] = useState(iniPosts);
+    const [text, setText] = useState();
     const [companyId, setCompanyId] = useContext(AppContext);
     const handlePostAsync = async () => {
-        const url = '/Board/PostAjax';
-        const data = { companyId: 'ca51b49f-3201-4096-c3a8-08d91f43f349', text: 'こんにちは' };
+        const url = '/Api/Posts';
+        const data = { companyId: companyId, text: text };
         const res = await axios.post(url, data);
+        setText("");
     }
 
     useEffect(() => {
         const feachData = async () => {
-            const url = `/Board/GetPostsAjax/?companyId=${companyId}`;
+            const url = `/Api/Posts?companyId=${companyId}`;
             const res = await axios.get(url)
             if (res.data != null) {
                 setPosts(res.data);
@@ -106,10 +127,10 @@ export const BoardMain = (props) => {
             <Box className={classes.postBox}>
                 <Grid container direction='column'>
                     <Grid item sm={12}>
-                        <TextField variant='outlined' className={classes.postTextField} fullWidth multiline rows='3'></TextField>
+                        <TextField variant='outlined' className={classes.postTextField} fullWidth multiline rows='3' onChange={(e) => setText(e.target.value)} value={text}></TextField>
                     </Grid>
                     <Grid item sm={12} className={classes.postAction}>
-                        <Button variant='contained' color='primary' onClick={handlePostAsync}>投稿</Button>
+                        <Button variant='contained' color='primary' onClick={handlePostAsync} >投稿</Button>
                     </Grid>
                 </Grid>
             </Box>

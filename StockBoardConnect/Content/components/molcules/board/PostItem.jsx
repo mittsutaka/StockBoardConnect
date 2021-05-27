@@ -48,7 +48,7 @@ export const PostItem = (props) => {
                     <Typography variant='subtitle2'>{props.postData.userName}</Typography>
                 </Grid>
                 <Grid item xs={6} className={classes.at}>
-                    <Typography variant='overline'>{props.postData.createdAt}</Typography>
+                    <Typography variant='overline'>{props.postData.at}</Typography>
                 </Grid>
             </Grid>
             <CardContent className={classes.message}>

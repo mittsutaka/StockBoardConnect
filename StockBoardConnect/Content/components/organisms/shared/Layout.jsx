@@ -13,7 +13,9 @@ const useStyles = makeStyles((theme) => ({
     },
     body: {
         paddingTop: '64px',
-        minHeight: '100vh'
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems:'stretch'
     },
     side: {
         borderRight: `1px solid ${Color.BORDER}`,

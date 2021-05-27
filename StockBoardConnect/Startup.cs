@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using React.AspNet;
+using StockBoardConnect.Areas.Api.Services;
 using StockBoardConnect.Data;
 using StockBoardConnect.Services;
 
@@ -55,6 +56,7 @@ namespace StockBoardConnect
             services.AddTransient<ISmsSender, AuthMessageSender>();
             services.AddTransient<ActionService>();
             services.AddTransient<BoardService>();
+            services.AddTransient<PostsService>();
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequireDigit = false;
@@ -70,7 +72,7 @@ namespace StockBoardConnect
                 option.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("ja-JP");
             });
 
-            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -124,13 +126,15 @@ namespace StockBoardConnect
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapAreaControllerRoute(
                     name: "Api",
                     areaName: "Api",
-                    pattern: "Api/{controller=Home}/{id?}");
+                    pattern: "api/{controller=Home}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                
                 endpoints.MapRazorPages();
             });
         }

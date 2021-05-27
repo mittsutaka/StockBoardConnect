@@ -15,6 +15,9 @@ const useStyles = makeStyles((theme) => ({
     boardList: {
         position: 'fixed',
         width: 'inherit'
+    },
+    wrapper: {
+        height: '100%',
     }
 }));
 
@@ -24,7 +27,7 @@ export const Board = () => {
     const setId = (id) => setCompanyId(id);
     return (
         <AppContext.Provider value={[companyId, setCompanyId]}>
-            <Grid container wrap='nowrap'>
+            <Grid container wrap='nowrap' className={classes.wrapper}>
                 <Grid item className={classes.list}>
                     <BoardList className={classes.boardList} />
                 </Grid>

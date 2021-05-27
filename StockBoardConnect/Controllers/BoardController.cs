@@ -30,41 +30,5 @@ namespace StockBoardConnect.Controllers
         {
             return View(id);
         }
-
-        [HttpPost]
-        public async Task<IActionResult> PostAjax([FromBody] PostRequestModel model)
-        {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            await _service.AddPostAsync(model.CompanyId, userId, model.Text);
-
-            return new JsonResult(true);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetPostsAjax(Guid companyId)
-        {
-            if (companyId == Guid.Empty) return new JsonResult(null);
-            var posts = new List<Post>()
-            {
-                new Post
-                {
-                    Text = "こんにちは",
-                    CreatedAt = DateTimeOffset.Now,
-                    UserName = "mittsutaka",
-                    Good = 20,
-                    Bad = 20
-                },
-                new Post
-                {
-                    Text = "mittsutakaさんこんにちは",
-                    CreatedAt = DateTimeOffset.Now,
-                    UserName = "mittsutaka",
-                    Good = 200,
-                    Bad = 20
-                },
-            };
-
-            return new JsonResult(posts);
-        }
     }
 }
