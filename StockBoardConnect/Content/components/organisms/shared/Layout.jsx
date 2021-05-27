@@ -12,15 +12,24 @@ const useStyles = makeStyles((theme) => ({
         color: Color.FONT
     },
     body: {
-        paddingTop: "64px",
-        minHeight: "100vh"
+        paddingTop: '64px',
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems:'stretch'
     },
     side: {
         borderRight: `1px solid ${Color.BORDER}`,
-        width: 'auto'
+        width: '240px',
+        justifyContent: 'flex-end',
+        [theme.breakpoints.down('sm')]: {
+            width: '80px',
+        },
     },
     content: {
         flex: 1
+    },
+    sideMenu: {
+        position: 'fixed'
     }
 }));
 
@@ -34,7 +43,7 @@ export const Layout = (props) => {
                 <Container className={classes.body}>
                     <Grid container wrap='nowrap'>
                         <Grid item container className={classes.side} >
-                            <SideMenu />
+                            <SideMenu className={classes.sideMenu} />
                         </Grid>
                         <Grid item className={classes.content}>
                             {props.children}

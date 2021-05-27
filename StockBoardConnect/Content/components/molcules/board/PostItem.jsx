@@ -45,14 +45,14 @@ export const PostItem = (props) => {
             <Grid container alignItems='center'>
                 <Grid container item xs={6} className={classes.name}>
                     <Avatar className={classes.avator}>H</Avatar>
-                    <Typography variant='subtitle2'>{props.postData.name}</Typography>
+                    <Typography variant='subtitle2'>{props.postData.userName}</Typography>
                 </Grid>
                 <Grid item xs={6} className={classes.at}>
                     <Typography variant='overline'>{props.postData.at}</Typography>
                 </Grid>
             </Grid>
             <CardContent className={classes.message}>
-                <Typography variant='body2'>{props.postData.message}</Typography>
+                <Typography variant='body2'>{props.postData.text}</Typography>
             </CardContent>
             <CardActions className={classes.bottom}>
                 <Box component='span' className={classes.thumb}>
