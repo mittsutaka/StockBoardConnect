@@ -1,8 +1,9 @@
-﻿import React from 'react';
+﻿import React, { useState } from 'react';
 import { BoardList } from '../../molcules/board/BoardList.jsx';
 import { BoardMain } from '../../molcules/board/BoardMain.jsx';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import AppContext from '../../../contexts/AppContext.js';
 
 const useStyles = makeStyles((theme) => ({
     list: {
@@ -13,20 +14,24 @@ const useStyles = makeStyles((theme) => ({
     },
     boardList: {
         position: 'fixed',
-        width:'inherit'
+        width: 'inherit'
     }
 }));
 
 export const Board = () => {
     const classes = useStyles();
+    const [companyId, setCompanyId] = useState(0);
+    const setId = (id) => setCompanyId(id);
     return (
-        <Grid container wrap='nowrap'>
-            <Grid item className={classes.list}>
-                <BoardList className={classes.boardList} />
+        <AppContext.Provider value={[companyId, setCompanyId]}>
+            <Grid container wrap='nowrap'>
+                <Grid item className={classes.list}>
+                    <BoardList className={classes.boardList} />
+                </Grid>
+                <Grid item className={classes.main}>
+                    <BoardMain />
+                </Grid>
             </Grid>
-            <Grid item className={classes.main}>
-                <BoardMain />
-            </Grid>
-        </Grid>
+        </AppContext.Provider>
     )
 }

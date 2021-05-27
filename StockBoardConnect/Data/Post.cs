@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace StockBoardConnect.Data
         [ForeignKey("User")]
         public string UserId { get; set; }
 
+        [JsonProperty("text")]
         public string Text { get; set; }
 
         public Company Company { get; set; }
@@ -22,6 +24,7 @@ namespace StockBoardConnect.Data
         [ForeignKey("Company")]
         public Guid CompanyId { get; set; }
 
+        [JsonProperty("createdAt")]
         public DateTimeOffset CreatedAt { get; set; }
 
         public DateTimeOffset? UpdatedAt { get; set; }
@@ -29,6 +32,20 @@ namespace StockBoardConnect.Data
         public PostPosition PostPosition { get; set; }
 
         public ICollection<PostLike> PostLikes { get; set; }
+
+        [NotMapped]
+        [JsonProperty("userName")]
+        public string UserName { get; set; }
+
+        [NotMapped]
+        [JsonProperty("good")]
+        public int Good { get; set; }
+
+        [NotMapped]
+        [JsonProperty("bad")]
+        public int Bad { get; set; }
+
+
     }
 
     public enum PostPosition
