@@ -1,4 +1,6 @@
-﻿using StockBoardConnect.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using StockBoardConnect.Areas.Api.Models;
+using StockBoardConnect.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +31,20 @@ namespace StockBoardConnect.Areas.Api.Services
             await _context.SaveChangesAsync();
 
             return true;
+        }
+
+        public async Task<List<PostViewModel>> GetPostsAsync(Guid companyId)
+        {
+            return await (from enp in _context.Posts
+                          where enp.CompanyId == companyId
+                          select new PostViewModel
+                          {
+                              UserName = enp.User.UserName,
+                              Text = enp.Text,
+                              At = enp.CreatedAt.ToString("yyyy/MM/dd HH:mm:ss"),
+                              Bad = 20,
+                              Good = 10
+                          }).ToListAsync();
         }
     }
 }

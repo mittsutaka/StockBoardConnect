@@ -24,25 +24,7 @@ namespace StockBoardConnect.Areas.Api.Controllers
         public async Task<IActionResult> Get(Guid companyId)
         {
             if (companyId == Guid.Empty) return new JsonResult(null);
-            var posts = new List<Post>()
-            {
-                new Post
-                {
-                    Text = "こんにちは",
-                    At = DateTimeOffset.Now.ToString("yyyy/MM/dd HH:mm:ss"),
-                    UserName = "mittsutaka",
-                    Good = 20,
-                    Bad = 20
-                },
-                new Post
-                {
-                    Text = "mittsutakaさんこんにちは",
-                    At = DateTimeOffset.Now.ToString("yyyy/MM/dd HH:mm:ss"),
-                    UserName = "mittsutaka",
-                    Good = 200,
-                    Bad = 20
-                },
-            };
+            var posts = await _service.GetPostsAsync(companyId);
 
             return new JsonResult(posts);
         }

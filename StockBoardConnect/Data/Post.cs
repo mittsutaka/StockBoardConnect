@@ -32,23 +32,6 @@ namespace StockBoardConnect.Data
         public PostPosition PostPosition { get; set; }
 
         public ICollection<PostLike> PostLikes { get; set; }
-
-        [NotMapped]
-        [JsonProperty("userName")]
-        public string UserName { get; set; }
-
-        [NotMapped]
-        [JsonProperty("good")]
-        public int Good { get; set; }
-
-        [NotMapped]
-        [JsonProperty("bad")]
-        public int Bad { get; set; }
-
-        [NotMapped]
-        [JsonProperty("at")]
-        public string At { get; set; }
-
     }
 
     public enum PostPosition

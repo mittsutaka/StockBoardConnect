@@ -1,6 +1,15 @@
-﻿import React, { useState, useContext, useEffect } from 'react';
-import { List, ListItem, ListItemIcon, ListItemText, Typography } from '@material-ui/core';
+﻿import { List, ListItem, Typography, Box } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import React, { useContext } from 'react';
 import AppContext from '../../../contexts/AppContext.js';
+import { BoardSearchBox } from './BoardSearchBox.jsx';
+
+const useStyles = makeStyles(() => ({
+    wrapper: {
+        width: 'inherit',
+        position: 'fixed'
+    }
+}))
 
 const data = [{
     number: "ca51b49f-3201-4096-c3a8-08d91f43f349",
@@ -24,19 +33,22 @@ const data = [{
 }];
 
 export const BoardList = (props) => {
-    const [companyId, setCompanyId] = useContext(AppContext);
-
+    const [company, setCompany] = useContext(AppContext);
+    const classes = useStyles();
     return (
-        <List className={props.className}>
-            {
-                data.map((t, i) => {
-                    return (
-                        <ListItem key={i} button onClick={() => setCompanyId(t.number)}>
-                            <Typography variant="body2">{`${t.name}`}</Typography>
-                        </ListItem>
-                    )
-                })
-            }
-        </List>
+        <Box className={classes.wrapper}>
+            <List>
+                {
+                    data.map((t, i) => {
+                        return (
+                            <ListItem key={i} button onClick={() => setCompany(prev => ({ ...prev, id: t.number, name: t.name }))}>
+                                <Typography variant="body2">{`${t.name}`}</Typography>
+                            </ListItem>
+                        )
+                    })
+                }
+            </List>
+            <BoardSearchBox />
+        </Box>
     )
 }

@@ -12,10 +12,6 @@ const useStyles = makeStyles((theme) => ({
     main: {
         flex: 1
     },
-    boardList: {
-        position: 'fixed',
-        width: 'inherit'
-    },
     wrapper: {
         height: '100%',
     }
@@ -23,16 +19,22 @@ const useStyles = makeStyles((theme) => ({
 
 export const Board = () => {
     const classes = useStyles();
-    const [companyId, setCompanyId] = useState(0);
-    const setId = (id) => setCompanyId(id);
+    const [company, setCompany] = useState({
+        id: "",
+        name: ""
+    });
+
     return (
-        <AppContext.Provider value={[companyId, setCompanyId]}>
+        <AppContext.Provider value={[company, setCompany]}>
             <Grid container wrap='nowrap' className={classes.wrapper}>
                 <Grid item className={classes.list}>
-                    <BoardList className={classes.boardList} />
+                    <BoardList />
                 </Grid>
                 <Grid item className={classes.main}>
-                    <BoardMain />
+                    {
+                        company.id &&
+                        <BoardMain />
+                    }
                 </Grid>
             </Grid>
         </AppContext.Provider>

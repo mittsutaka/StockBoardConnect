@@ -6,7 +6,6 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import AppContext from '../../../contexts/AppContext.js';
 
-
 const useStyles = makeStyles((theme) => ({
     postItem: {
         padding: theme.spacing(1),
@@ -35,90 +34,40 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-
-const iniPosts = [{
-    at: '2021/05/08 17:50:05',
-    text: 'こんにちは、今日も頑張りましょう。',
-    userName: 'mittsutaka',
-    good: 10,
-    bad: 5
-},
-{
-    at: '2021/05/08 17:57:29',
-    text: 'こんにちは、そんなこといったってどうなるかわからないですよね。',
-    userName: 'suzuki keisuke',
-    good: 100,
-    bad: 2
-},
-{
-    at: '2021/05/08 18:04:39',
-    text: '今日はいい地合いで楽しみですね。',
-    userName: 'tensaiman',
-    good: 13,
-    bad: 2
-},
-{
-    at: '2021/05/08 18:09:35',
-    text: '明日からは土日なので今日は静かな気がします。だけども、どうなるかはまったくわかりませんね。皆さん今日も楽しく。人生楽しく生きていきましょう。',
-    userName: 'helloakachann',
-    good: 18,
-    bad: 20000
-}, {
-    at: '2021/05/08 18:09:59',
-    text: '明日からは土日なので今日は静かな気がします。だけども、どうなるかはまったくわかりませんね。皆さん今日も楽しく。人生楽しく生きていきましょう。',
-    userName: '村尾光崇',
-    good: 18,
-    bad: 20
-}, {
-    at: '2021/05/08 18:09:59',
-    text: '明日からは土日なので今日は静かな気がします。だけども、どうなるかはまったくわかりませんね。皆さん今日も楽しく。人生楽しく生きていきましょう。',
-    userName: '村尾光崇',
-    good: 18,
-    bad: 20
-}, {
-    at: '2021/05/08 18:09:59',
-    text: '明日からは土日なので今日は静かな気がします。だけども、どうなるかはまったくわかりませんね。皆さん今日も楽しく。人生楽しく生きていきましょう。',
-    userName: '村尾光崇',
-    good: 18,
-    bad: 20
-}, {
-    at: '2021/05/08 18:09:59',
-    text: '明日からは土日なので今日は静かな気がします。だけども、どうなるかはまったくわかりませんね。皆さん今日も楽しく。人生楽しく生きていきましょう。',
-    userName: '村尾光崇',
-    good: 18,
-    bad: 20
-}];
-
 export const BoardMain = (props) => {
     const classes = useStyles();
-    const [posts, setPosts] = useState(iniPosts);
+    const [posts, setPosts] = useState();
     const [text, setText] = useState();
-    const [companyId, setCompanyId] = useContext(AppContext);
+    const [company, setCompany] = useContext(AppContext);
     const handlePostAsync = async () => {
-        const url = '/Api/Posts';
-        const data = { companyId: companyId, text: text };
-        const res = await axios.post(url, data);
-        setText("");
+        if (text) {
+            const url = '/Api/Posts';
+            const data = { companyId: company.id, text: text };
+            const res = await axios.post(url, data);
+            setText("");
+        }
     }
 
     useEffect(() => {
         const feachData = async () => {
-            const url = `/Api/Posts?companyId=${companyId}`;
-            const res = await axios.get(url)
-            if (res.data != null) {
-                setPosts(res.data);
+            if (company.id) {
+                const url = `/Api/Posts?companyId=${company.id}`;
+                const res = await axios.get(url)
+                if (res.data != null) {
+                    setPosts(res.data);
+                }
             }
         }
         feachData();
-    }, [companyId])
+    }, [company])
 
     return (
         <Box className={classes.wrapper}>
             <Box className={classes.header}>
-                <Typography variant='subtitle1'>スクロール</Typography>
+                <Typography variant='subtitle1'>{company.name}</Typography>
             </Box>
             {
-                posts.map((t, i) => {
+                posts?.map((t, i) => {
                     return (
                         <Box className={classes.postItem} key={i}><PostItem postData={t}></PostItem></Box>
                     )
