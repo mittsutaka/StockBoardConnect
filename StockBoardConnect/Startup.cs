@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using React.AspNet;
 using StockBoardConnect.Areas.Api.Services;
 using StockBoardConnect.Data;
+using StockBoardConnect.Hubs;
 using StockBoardConnect.Services;
 
 namespace StockBoardConnect
@@ -42,6 +43,8 @@ namespace StockBoardConnect
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddReact();
             services.AddRazorPages().AddRazorRuntimeCompilation();
+            services.AddSignalR();
+
             services.AddWebOptimizer(pipeline =>
             {
                 pipeline.AddCssBundle("/css/bundle.css", "css/**/*.css");
@@ -136,6 +139,7 @@ namespace StockBoardConnect
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 
                 endpoints.MapRazorPages();
+                endpoints.MapHub<BoardHub>("/boardHub");
             });
         }
     }

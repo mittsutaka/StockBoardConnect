@@ -37,6 +37,7 @@ namespace StockBoardConnect.Areas.Api.Services
         {
             return await (from enp in _context.Posts
                           where enp.CompanyId == companyId
+                          orderby enp.CreatedAt descending
                           select new PostViewModel
                           {
                               UserName = enp.User.UserName,
