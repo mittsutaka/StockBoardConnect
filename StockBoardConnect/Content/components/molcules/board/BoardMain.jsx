@@ -59,8 +59,9 @@ export const BoardMain = (props) => {
             }
         }
         feachData();
-    }, [company])
+    }, [company]);
 
+    
     return (
         <Box className={classes.wrapper}>
             <Box className={classes.header}>

@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using StockBoardConnect.Areas.Api.Models;
 using StockBoardConnect.Areas.Api.Services;
-using StockBoardConnect.Data;
+using StockBoardConnect.Hubs;
 using System;
-using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -14,10 +14,12 @@ namespace StockBoardConnect.Areas.Api.Controllers
     public class PostsController : ControllerBase
     {
         private PostsService _service;
+        private readonly IHubContext<BoardHub> _hubContext;
 
-        public PostsController(PostsService service)
+        public PostsController(PostsService service, IHubContext<BoardHub> hubContext)
         {
             _service = service;
+            _hubContext = hubContext;
         }
 
         [HttpGet]
@@ -33,6 +35,8 @@ namespace StockBoardConnect.Areas.Api.Controllers
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             await _service.AddPostAsync(model.CompanyId, userId, model.Text);
+
+            await _hubContext.Clients.All.SendAsync("ReceiveMessage");
 
             return new JsonResult(true);
         }
