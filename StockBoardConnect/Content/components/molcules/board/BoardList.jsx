@@ -6,8 +6,6 @@ import axios from 'axios';
 
 const useStyles = makeStyles(() => ({
     wrapper: {
-        width: 'inherit',
-        position: 'fixed'
     }
 }))
 

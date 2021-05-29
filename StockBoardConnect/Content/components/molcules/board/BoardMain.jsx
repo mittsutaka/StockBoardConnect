@@ -1,11 +1,11 @@
-﻿import React, { useState, useContext } from 'react';
-import { PostItem } from './PostItem.jsx';
-import { Box, Button, TextField, Typography, Grid } from '@material-ui/core';
+﻿import { Box, Button, Grid, Icon, TextField, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
-import { useEffect } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import AppContext from '../../../contexts/AppContext.js';
+import { ButtonWithIcon } from '../../atoms/ButtonWithIcon.jsx';
 import { BoardSearchBox } from './BoardSearchBox.jsx';
+import { PostItem } from './PostItem.jsx';
 
 const useStyles = makeStyles((theme) => ({
     postItem: {
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(1)
     },
     postBox: {
-        position: 'sticky',
+        position: 'absolute',
         bottom: 0,
         width: '100%',
         backgroundColor: 'white',
@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
     wrapper: {
         position: 'relative',
         height: '100%',
-        overflow: 'auto'
     },
     postTextField: {
         backgroundColor: 'white',
@@ -38,21 +37,32 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '14px'
     },
     body: {
-
+        overflow: 'auto',
+        height: '100%'
+    },
+    name: {
+        flexGrow: 1
+    },
+    favoriteBtnWrapper: {
+        paddingRight: theme.spacing(2)
+    },
+    emptyBox: {
+        height: '280px',
+        width: '100%',
     }
 }));
 
 export const BoardMain = (props) => {
     const classes = useStyles();
     const [posts, setPosts] = useState();
-    const [text, setText] = useState();
+    const testEl = useRef();
     const [company, setCompany] = useContext(AppContext);
     const handlePostAsync = async () => {
-        if (text) {
+        if (testEl.current.value) {
             const url = '/Api/Posts';
-            const data = { companyId: company.id, text: text };
+            const data = { companyId: company.id, text: testEl.current.value };
             const res = await axios.post(url, data);
-            setText("");
+            testEl.current.value = '';
         }
     }
 
@@ -74,9 +84,14 @@ export const BoardMain = (props) => {
             <BoardSearchBox />
             {company.id &&
                 <>
-                    <Box className={classes.header}>
-                        <Typography variant='subtitle1'>{company.name}</Typography>
-                    </Box>
+                    <Grid container className={classes.header} direction='row'>
+                        <Typography variant='subtitle1' className={classes.name}>{company.name}</Typography>
+                        <Grid item className={classes.favoriteBtnWrapper}>
+                            <ButtonWithIcon icon='add' iconSize='small' variant='outlined' size='small' color='primary' className={classes.favoriteBtn}>
+                                お気に入りに追加
+                        </ButtonWithIcon>
+                        </Grid>
+                    </Grid>
                     <Box className={classes.body}>
                         {
                             posts?.map((t, i) => {
@@ -85,16 +100,17 @@ export const BoardMain = (props) => {
                                 )
                             })
                         }
-                        <Box className={classes.postBox}>
-                            <Grid container direction='column'>
-                                <Grid item sm={12}>
-                                    <TextField inputProps={{ className: classes.postInput }} variant='outlined' className={classes.postTextField} fullWidth multiline rows='3' onChange={(e) => setText(e.target.value)} value={text}></TextField>
-                                </Grid>
-                                <Grid item sm={12} className={classes.postAction}>
-                                    <Button variant='contained' color='primary' onClick={handlePostAsync} >投稿</Button>
-                                </Grid>
+                        <Box className={classes.emptyBox}></Box>
+                    </Box>
+                    <Box className={classes.postBox}>
+                        <Grid container direction='column'>
+                            <Grid item sm={12}>
+                                <TextField inputProps={{ className: classes.postInput, ref: testEl }} variant='outlined' className={classes.postTextField} fullWidth multiline rows='2'></TextField>
                             </Grid>
-                        </Box>
+                            <Grid item sm={12} className={classes.postAction}>
+                                <Button variant='contained' color='primary' onClick={handlePostAsync} >投稿</Button>
+                            </Grid>
+                        </Grid>
                     </Box>
                 </>
             }
