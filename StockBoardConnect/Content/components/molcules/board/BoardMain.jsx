@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import { useEffect } from 'react';
 import AppContext from '../../../contexts/AppContext.js';
+import { BoardSearchBox } from './BoardSearchBox.jsx';
 
 const useStyles = makeStyles((theme) => ({
     postItem: {
@@ -22,7 +23,8 @@ const useStyles = makeStyles((theme) => ({
     },
     wrapper: {
         position: 'relative',
-        height: '100%'
+        height: '100%',
+        overflow: 'auto'
     },
     postTextField: {
         backgroundColor: 'white',
@@ -34,6 +36,9 @@ const useStyles = makeStyles((theme) => ({
     },
     postInput: {
         fontSize: '14px'
+    },
+    body: {
+
     }
 }));
 
@@ -64,29 +69,36 @@ export const BoardMain = (props) => {
         feachData();
     }, [company]);
 
-
     return (
         <Box className={classes.wrapper}>
-            <Box className={classes.header}>
-                <Typography variant='subtitle1'>{company.name}</Typography>
-            </Box>
-            {
-                posts?.map((t, i) => {
-                    return (
-                        <Box className={classes.postItem} key={i}><PostItem postData={t}></PostItem></Box>
-                    )
-                })
+            <BoardSearchBox />
+            {company.id &&
+                <>
+                    <Box className={classes.header}>
+                        <Typography variant='subtitle1'>{company.name}</Typography>
+                    </Box>
+                    <Box className={classes.body}>
+                        {
+                            posts?.map((t, i) => {
+                                return (
+                                    <Box className={classes.postItem} key={i}><PostItem postData={t}></PostItem></Box>
+                                )
+                            })
+                        }
+                        <Box className={classes.postBox}>
+                            <Grid container direction='column'>
+                                <Grid item sm={12}>
+                                    <TextField inputProps={{ className: classes.postInput }} variant='outlined' className={classes.postTextField} fullWidth multiline rows='3' onChange={(e) => setText(e.target.value)} value={text}></TextField>
+                                </Grid>
+                                <Grid item sm={12} className={classes.postAction}>
+                                    <Button variant='contained' color='primary' onClick={handlePostAsync} >投稿</Button>
+                                </Grid>
+                            </Grid>
+                        </Box>
+                    </Box>
+                </>
             }
-            <Box className={classes.postBox}>
-                <Grid container direction='column'>
-                    <Grid item sm={12}>
-                        <TextField inputProps={{ className: classes.postInput }} variant='outlined' className={classes.postTextField} fullWidth multiline rows='3' onChange={(e) => setText(e.target.value)} value={text}></TextField>
-                    </Grid>
-                    <Grid item sm={12} className={classes.postAction}>
-                        <Button variant='contained' color='primary' onClick={handlePostAsync} >投稿</Button>
-                    </Grid>
-                </Grid>
-            </Box>
+
         </Box>
     )
 }

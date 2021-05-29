@@ -14,8 +14,9 @@ const useStyles = makeStyles((theme) => ({
     body: {
         paddingTop: '64px',
         minHeight: '100vh',
+        height: '100vh',
         display: 'flex',
-        alignItems:'stretch'
+        overflow:'hidden'
     },
     side: {
         borderRight: `1px solid ${Color.BORDER}`,
@@ -27,9 +28,6 @@ const useStyles = makeStyles((theme) => ({
     },
     content: {
         flex: 1
-    },
-    sideMenu: {
-        position: 'fixed'
     }
 }));
 
@@ -43,7 +41,7 @@ export const Layout = (props) => {
                 <Container className={classes.body}>
                     <Grid container wrap='nowrap'>
                         <Grid item container className={classes.side} >
-                            <SideMenu className={classes.sideMenu} />
+                            <SideMenu />
                         </Grid>
                         <Grid item className={classes.content}>
                             {props.children}

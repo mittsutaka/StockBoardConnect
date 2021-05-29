@@ -11,14 +11,18 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
         position: 'absolute',
-        maxWidth: '180px',
+        width: '100%',
         fontSize: '14px',
         maxHeight: '480px',
-        overflow: 'auto'
+        overflow: 'auto',
+        zIndex:'1'
     },
     search: {
         fontSize: '12px',
         padding: theme.spacing(2)
+    },
+    textFieldRoot: {
+        width:'100%'
     }
 }))
 
@@ -49,9 +53,10 @@ export const BoardSearchBox = (props) => {
 
     return (
         <Box className={classes.wrapper}>
-            <TextField inputProps={{ className: classes.search }} variant="outlined" onChange={handleChange} value={searchText} placeholder='銘柄名又はコードで検索'></TextField>
+            <TextField className={classes.textFieldRoot} inputProps={{ className: classes.search }} variant="outlined" onChange={handleChange} value={searchText} placeholder='銘柄名又はコードで検索'></TextField>
             {
                 searchText &&
+                Boolean(companies?.length) &&
                 <Paper id='search' className={classes.paper}>
                     <List>
                         {

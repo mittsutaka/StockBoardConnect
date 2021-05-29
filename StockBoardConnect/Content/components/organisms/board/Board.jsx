@@ -55,10 +55,7 @@ export const Board = () => {
                     <BoardList />
                 </Grid>
                 <Grid item className={classes.main}>
-                    {
-                        company.id &&
-                        <BoardMain />
-                    }
+                    <BoardMain />
                 </Grid>
             </Grid>
         </AppContext.Provider>

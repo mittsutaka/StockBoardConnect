@@ -2,7 +2,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import React, { useContext, useEffect, useState } from 'react';
 import AppContext from '../../../contexts/AppContext.js';
-import { BoardSearchBox } from './BoardSearchBox.jsx';
 import axios from 'axios';
 
 const useStyles = makeStyles(() => ({
@@ -61,7 +60,6 @@ export const BoardList = (props) => {
                     })
                 }
             </List>
-            <BoardSearchBox />
         </Box>
     )
 }
