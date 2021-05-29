@@ -11,6 +11,7 @@ namespace StockBoardConnect.Data
         public DbSet<Company> Companies { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<PostLike> PostLikes { get; set; }
+        public DbSet<FavoriteCompany> FavoriteCompanies { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

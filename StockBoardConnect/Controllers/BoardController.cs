@@ -28,6 +28,7 @@ namespace StockBoardConnect.Controllers
         [Route("[controller]/{id:int}")]
         public async Task<IActionResult> Board(int id)
         {
+
             return View(id);
         }
     }

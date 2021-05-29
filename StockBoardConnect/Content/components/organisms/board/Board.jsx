@@ -48,11 +48,6 @@ export const Board = () => {
         }
     }, [connection]);
 
-    const sendMessage = async () => {
-        if (connection) await connection.send("SendMessage", inputText);
-        setInputText("");
-    };
-
     return (
         <AppContext.Provider value={[company, setCompany]}>
             <Grid container wrap='nowrap' className={classes.wrapper}>

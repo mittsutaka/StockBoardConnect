@@ -1,8 +1,9 @@
 ﻿import { List, ListItem, Typography, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import AppContext from '../../../contexts/AppContext.js';
 import { BoardSearchBox } from './BoardSearchBox.jsx';
+import axios from 'axios';
 
 const useStyles = makeStyles(() => ({
     wrapper: {
@@ -35,6 +36,18 @@ const data = [{
 export const BoardList = (props) => {
     const [company, setCompany] = useContext(AppContext);
     const classes = useStyles();
+    const [favoriteCompanies, setFavoriteCompanies] = useState();
+
+    const fetchFavoriteCompanies = async () => {
+        const url = "/api/FavoriteCompanies";
+        //const res = await axios.get(url);
+        //setFavoriteCompanies(res.data);
+    }
+
+    useEffect(() => {
+        fetchFavoriteCompanies();
+    }, []);
+
     return (
         <Box className={classes.wrapper}>
             <List>

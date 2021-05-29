@@ -31,6 +31,9 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'right',
         padding: theme.spacing(1),
         fontSize: '12px'
+    },
+    postInput: {
+        fontSize: '14px'
     }
 }));
 
@@ -61,7 +64,7 @@ export const BoardMain = (props) => {
         feachData();
     }, [company]);
 
-    
+
     return (
         <Box className={classes.wrapper}>
             <Box className={classes.header}>
@@ -77,7 +80,7 @@ export const BoardMain = (props) => {
             <Box className={classes.postBox}>
                 <Grid container direction='column'>
                     <Grid item sm={12}>
-                        <TextField variant='outlined' className={classes.postTextField} fullWidth multiline rows='3' onChange={(e) => setText(e.target.value)} value={text}></TextField>
+                        <TextField inputProps={{ className: classes.postInput }} variant='outlined' className={classes.postTextField} fullWidth multiline rows='3' onChange={(e) => setText(e.target.value)} value={text}></TextField>
                     </Grid>
                     <Grid item sm={12} className={classes.postAction}>
                         <Button variant='contained' color='primary' onClick={handlePostAsync} >投稿</Button>

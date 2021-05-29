@@ -60,6 +60,7 @@ namespace StockBoardConnect
             services.AddTransient<ActionService>();
             services.AddTransient<BoardService>();
             services.AddTransient<PostsService>();
+            services.AddTransient<CompaniesService>();
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequireDigit = false;
