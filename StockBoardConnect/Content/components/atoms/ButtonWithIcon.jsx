@@ -4,14 +4,14 @@ import React from 'react';
 
 const useStyles = makeStyles((theme) => ({
     icon: {
-        marginRight: '4px'
+        marginRight: theme.spacing(1)
     }
 }));
 
 export const ButtonWithIcon = (props) => {
     const classes = useStyles();
     return (
-        <Button variant={props.variant} size={props.size} color={props.color} className={props.className}>
+        <Button onClick={props.onClick} variant={props.variant} size={props.size} color={props.color} className={props.className}>
             <Icon className={classes.icon} fontSize={props.iconSize}>{props.icon}</Icon>
             {props.children}
         </Button>
