@@ -16,7 +16,7 @@ namespace StockBoardConnect.Areas.Api.Services
             _context = context;
         }
 
-        public async Task<bool> AddPostAsync(Guid companyId, string userId, string text, PostPosition position = PostPosition.Neutral)
+        public async Task<bool> AddAsync(Guid companyId, string userId, string text, PostPosition position = PostPosition.Neutral)
         {
             var post = new Post
             {

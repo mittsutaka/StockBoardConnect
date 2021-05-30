@@ -66,6 +66,14 @@ export const BoardMain = (props) => {
         }
     }
 
+    const handleFavoriteCompany = async () => {
+        if (company.id) {
+            const url = '/Api/FavoriteCompanies';
+            const data = { companyId: company.id }
+            const res = await acios.post(url, data);
+        }
+    }
+
     useEffect(() => {
         const feachData = async () => {
             if (company.id) {

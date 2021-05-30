@@ -25,6 +25,7 @@ export const Board = () => {
         name: "",
         at: ""
     });
+    const [favoriteCompanies, serFavoriteCompanies] = useState();
     const [connection, setConnection] = useState(null);
 
     useEffect(() => {

@@ -34,7 +34,7 @@ namespace StockBoardConnect.Areas.Api.Controllers
         public async Task<IActionResult> Post([FromBody] PostRequestModel model)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            await _service.AddPostAsync(model.CompanyId, userId, model.Text);
+            await _service.AddAsync(model.CompanyId, userId, model.Text);
 
             await _hubContext.Clients.All.SendAsync("ReceiveMessage");
 
