@@ -14,7 +14,7 @@ namespace StockBoardConnect.Areas.Api.Controllers
     [ApiController]
     public class PostsController : ControllerBase
     {
-        private PostsService _service;
+        private readonly PostsService _service;
         private readonly IHubContext<BoardHub> _hubContext;
 
         public PostsController(PostsService service, IHubContext<BoardHub> hubContext)

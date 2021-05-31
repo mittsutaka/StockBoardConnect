@@ -3,7 +3,7 @@ import { BoardList } from '../../molcules/board/BoardList.jsx';
 import { BoardMain } from '../../molcules/board/BoardMain.jsx';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import AppContext from '../../../contexts/AppContext.js';
+import BoardContext from '../../../contexts/AppContext.js';
 import { HubConnectionBuilder } from "@microsoft/signalr";
 
 const useStyles = makeStyles((theme) => ({
@@ -50,7 +50,7 @@ export const Board = () => {
     }, [connection]);
 
     return (
-        <AppContext.Provider value={[company, setCompany, favoriteCompanies, setFavoriteCompanies]}>
+        <BoardContext.Provider value={[company, setCompany, favoriteCompanies, setFavoriteCompanies]}>
             <Grid container wrap='nowrap' className={classes.wrapper}>
                 <Grid item className={classes.list}>
                     <BoardList />
@@ -59,6 +59,6 @@ export const Board = () => {
                     <BoardMain />
                 </Grid>
             </Grid>
-        </AppContext.Provider>
+        </BoardContext.Provider>
     )
 }

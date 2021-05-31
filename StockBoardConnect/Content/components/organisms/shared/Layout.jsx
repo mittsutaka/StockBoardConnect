@@ -1,10 +1,13 @@
-﻿import React from 'react';
+﻿import React, { useState } from 'react';
 import { Header } from '../../molcules/shared/Header.jsx';
 import { SideMenu } from '../../molcules/shared/SideMenu.jsx';
 import { Grid, Container } from '@material-ui/core';
 import { Loading } from '../../molcules/shared/Loading.jsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Color from '../../../consts/Color.js';
+import AppContext from '../../../contexts/AppContext.js';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     main: {
@@ -16,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
         minHeight: '100vh',
         height: '100vh',
         display: 'flex',
-        overflow:'hidden'
+        overflow: 'hidden'
     },
     side: {
         borderRight: `1px solid ${Color.BORDER}`,
@@ -33,8 +36,18 @@ const useStyles = makeStyles((theme) => ({
 
 export const Layout = (props) => {
     const classes = useStyles();
+    const [user, setUser] = useState();
+    useEffect(() => {
+        const fecthAuthUser = async () => {
+            const url = '/Api/Users/me';
+            const res = await axios.get(url);
+            setUser(res.data);
+            console.log(res.data);
+        }
+        fecthAuthUser();
+    }, [])
     return (
-        <>
+        <AppContext.Provider value={[user, setUser]} >
             <Loading />
             <div className={classes.main}>
                 <Header />
@@ -49,6 +62,6 @@ export const Layout = (props) => {
                     </Grid>
                 </Container>
             </div>
-        </>
+        </AppContext.Provider>
     )
 }

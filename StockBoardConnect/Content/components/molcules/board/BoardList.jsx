@@ -16,7 +16,6 @@ export const BoardList = (props) => {
     const fetchFavoriteCompanies = async () => {
         const url = "/Api/FavoriteCompanies";
         const res = await axios.get(url);
-        console.log(res);
         setFavoriteCompanies([...res.data]);
     }
 

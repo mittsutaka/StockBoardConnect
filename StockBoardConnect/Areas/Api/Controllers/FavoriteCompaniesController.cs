@@ -1,14 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Mvc;
 using StockBoardConnect.Areas.Api.Models;
 using StockBoardConnect.Areas.Api.Services;
-using StockBoardConnect.Areas.Api.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -18,7 +11,7 @@ namespace StockBoardConnect.Areas.Api.Controllers
     [ApiController]
     public class FavoriteCompaniesController : ControllerBase
     {
-        private FavoriteCompaniesService _service;
+        private readonly FavoriteCompaniesService _service;
 
         public FavoriteCompaniesController(FavoriteCompaniesService service)
         {

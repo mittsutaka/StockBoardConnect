@@ -13,7 +13,7 @@ namespace StockBoardConnect.Areas.Api.Controllers
     [ApiController]
     public class CompaniesController : ControllerBase
     {
-        private CompaniesService _service;
+        private readonly CompaniesService _service;
 
         public CompaniesController(CompaniesService service)
         {
