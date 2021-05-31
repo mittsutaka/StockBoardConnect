@@ -16,17 +16,33 @@ namespace StockBoardConnect.Areas.Api.Services
             _context = context;
         }
 
-        public async Task AddAsync(Guid companyId,string userId)
+        public async Task<FavoriteCompany> GetAsync(Guid companyId, string userId)
         {
-            var fc = new FavoriteCompany
+            return await _context.FavoriteCompanies.Where(t => t.UserId == userId && t.CompanyId == companyId).Include(t => t.Company).FirstOrDefaultAsync();
+        }
+
+        public async Task<List<FavoriteCompany>> GetFavoriteCompaniesAsync(string userId)
+        {
+            return await _context.FavoriteCompanies.Where(t => t.UserId == userId).Include(t => t.Company).ToListAsync();
+        }
+
+        public async Task<FavoriteCompany> AddAsync(Guid companyId, string userId)
+        {
+            try
             {
-                CompanyId = companyId,
-                UserId = userId,
-                CreatedAt = DateTimeOffset.Now,
-                LastReadAt = DateTimeOffset.Now
-            };
-            await _context.FavoriteCompanies.AddAsync(fc);
-            await _context.SaveChangesAsync();
-        } 
+                var fc = new FavoriteCompany
+                {
+                    CompanyId = companyId,
+                    UserId = userId,
+                    CreatedAt = DateTimeOffset.Now,
+                    LastReadAt = DateTimeOffset.Now
+                };
+                await _context.FavoriteCompanies.AddAsync(fc);
+                await _context.SaveChangesAsync();
+
+                return fc;
+            }
+            catch { return null; }
+        }
     }
 }

@@ -8,8 +8,6 @@ namespace StockBoardConnect.Data
 {
     public class FavoriteCompany
     {
-        public long Id { get; set; }
-
         [ForeignKey("User")]
         public string UserId { get; set; }
 

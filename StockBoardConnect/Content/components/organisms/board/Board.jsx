@@ -25,7 +25,7 @@ export const Board = () => {
         name: "",
         at: ""
     });
-    const [favoriteCompanies, serFavoriteCompanies] = useState();
+    const [favoriteCompanies, setFavoriteCompanies] = useState([]);
     const [connection, setConnection] = useState(null);
 
     useEffect(() => {
@@ -50,7 +50,7 @@ export const Board = () => {
     }, [connection]);
 
     return (
-        <AppContext.Provider value={[company, setCompany]}>
+        <AppContext.Provider value={[company, setCompany, favoriteCompanies, setFavoriteCompanies]}>
             <Grid container wrap='nowrap' className={classes.wrapper}>
                 <Grid item className={classes.list}>
                     <BoardList />

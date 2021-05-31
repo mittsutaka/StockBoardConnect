@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace StockBoardConnect.Data.Migrations
 {
-    public partial class AddFavoriteCompany : Migration
+    public partial class AddFavoriteCompanies : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,22 +11,20 @@ namespace StockBoardConnect.Data.Migrations
                 name: "FavoriteCompanies",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CompanyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     LastReadAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FavoriteCompanies", x => x.Id);
+                    table.PrimaryKey("PK_FavoriteCompanies", x => new { x.UserId, x.CompanyId });
                     table.ForeignKey(
                         name: "FK_FavoriteCompanies_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_FavoriteCompanies_Companies_CompanyId",
                         column: x => x.CompanyId,
@@ -39,11 +37,6 @@ namespace StockBoardConnect.Data.Migrations
                 name: "IX_FavoriteCompanies_CompanyId",
                 table: "FavoriteCompanies",
                 column: "CompanyId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FavoriteCompanies_UserId",
-                table: "FavoriteCompanies",
-                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -4,6 +4,7 @@ using StockBoardConnect.Areas.Api.Models;
 using StockBoardConnect.Areas.Api.Services;
 using StockBoardConnect.Hubs;
 using System;
+using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -37,6 +38,8 @@ namespace StockBoardConnect.Areas.Api.Controllers
             await _service.AddAsync(model.CompanyId, userId, model.Text);
 
             await _hubContext.Clients.All.SendAsync("ReceiveMessage");
+
+            Response.StatusCode = (int)HttpStatusCode.Created;
 
             return new JsonResult(true);
         }

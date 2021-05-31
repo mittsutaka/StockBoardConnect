@@ -19,6 +19,9 @@ namespace StockBoardConnect.Data
 
             modelBuilder.Entity<PostLike>()
                 .HasKey(c => new { c.PostId, c.UserId });
+
+            modelBuilder.Entity<FavoriteCompany>()
+                .HasKey(c => new { c.UserId, c.CompanyId });
         }
     }
 }

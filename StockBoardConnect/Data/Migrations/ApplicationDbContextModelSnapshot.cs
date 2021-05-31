@@ -264,10 +264,8 @@ namespace StockBoardConnect.Data.Migrations
 
             modelBuilder.Entity("StockBoardConnect.Data.FavoriteCompany", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<Guid>("CompanyId")
                         .HasColumnType("uniqueidentifier");
@@ -278,14 +276,9 @@ namespace StockBoardConnect.Data.Migrations
                     b.Property<DateTimeOffset>("LastReadAt")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
+                    b.HasKey("UserId", "CompanyId");
 
                     b.HasIndex("CompanyId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("FavoriteCompanies");
                 });
@@ -403,7 +396,9 @@ namespace StockBoardConnect.Data.Migrations
 
                     b.HasOne("StockBoardConnect.Data.ApplicationUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Company");
 

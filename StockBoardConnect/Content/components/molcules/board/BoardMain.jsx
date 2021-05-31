@@ -56,7 +56,7 @@ export const BoardMain = (props) => {
     const classes = useStyles();
     const [posts, setPosts] = useState();
     const testEl = useRef();
-    const [company, setCompany] = useContext(AppContext);
+    const [company, setCompany, favoriteCompanies, setFavoriteCompanies] = useContext(AppContext);
     const handlePostAsync = async () => {
         if (testEl.current.value) {
             const url = '/Api/Posts';
@@ -66,11 +66,15 @@ export const BoardMain = (props) => {
         }
     }
 
-    const handleFavoriteCompany = async () => {
+    const handleAddFavoriteCompany = async () => {
         if (company.id) {
             const url = '/Api/FavoriteCompanies';
             const data = { companyId: company.id }
-            const res = await acios.post(url, data);
+            const res = await axios.post(url, data);
+            console.log(res.data);
+            if (res.data) {
+                setFavoriteCompanies(prev => [...prev, res.data]);
+            }
         }
     }
 
@@ -95,7 +99,7 @@ export const BoardMain = (props) => {
                     <Grid container className={classes.header} direction='row'>
                         <Typography variant='subtitle1' className={classes.name}>{company.name}</Typography>
                         <Grid item className={classes.favoriteBtnWrapper}>
-                            <ButtonWithIcon icon='add' iconSize='small' variant='outlined' size='small' color='primary' className={classes.favoriteBtn}>
+                            <ButtonWithIcon icon='add' iconSize='small' variant='outlined' size='small' color='primary' className={classes.favoriteBtn} onClick={handleAddFavoriteCompany}>
                                 お気に入りに追加
                         </ButtonWithIcon>
                         </Grid>
@@ -112,8 +116,8 @@ export const BoardMain = (props) => {
                     </Box>
                     <Box className={classes.postBox}>
                         <Grid container direction='column'>
-                        <Grid item sm={12}>
-                            <TextField placeholder='(マナーを守って投資仲間と楽しく会話しましょう)' inputProps={{ className: classes.postInput, ref: testEl }} variant='outlined' className={classes.postTextField} fullWidth multiline rows='2'></TextField>
+                            <Grid item sm={12}>
+                                <TextField placeholder='(マナーを守って投資仲間と楽しく会話しましょう)' inputProps={{ className: classes.postInput, ref: testEl }} variant='outlined' className={classes.postTextField} fullWidth multiline rows='2'></TextField>
                             </Grid>
                             <Grid item sm={12} className={classes.postAction}>
                                 <ButtonWithIcon variant='contained' color='primary' onClick={handlePostAsync} icon='send' iconSize='small'>投稿</ButtonWithIcon>
