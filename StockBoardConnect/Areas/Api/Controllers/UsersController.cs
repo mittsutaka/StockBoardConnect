@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using StockBoardConnect.Areas.Api.Models;
 using StockBoardConnect.Areas.Api.Services;
 using StockBoardConnect.Data;
 using System;
@@ -22,10 +23,19 @@ namespace StockBoardConnect.Areas.Api.Controllers
             _userManager = userManager;
             _service = service;
         }
+
         [HttpGet("me")]
         public async Task<IActionResult> GetMe()
         {
-            return new JsonResult(await _userManager.GetUserAsync(User));
+            var user = await _userManager.GetUserAsync(User);
+
+            var model = new UserResponseModel()
+            {
+                Id = user.Id,
+                DisplayName = user.DisplayName
+            };
+
+            return new JsonResult(model);
         }
     }
 }

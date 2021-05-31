@@ -42,7 +42,6 @@ export const Layout = (props) => {
             const url = '/Api/Users/me';
             const res = await axios.get(url);
             setUser(res.data);
-            console.log(res.data);
         }
         fecthAuthUser();
     }, [])
@@ -50,7 +49,7 @@ export const Layout = (props) => {
         <AppContext.Provider value={[user, setUser]} >
             <Loading />
             <div className={classes.main}>
-                <Header />
+                <Header userName={user?.displayName} />
                 <Container className={classes.body}>
                     <Grid container wrap='nowrap'>
                         <Grid item container className={classes.side} >

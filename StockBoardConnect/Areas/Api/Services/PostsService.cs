@@ -40,7 +40,7 @@ namespace StockBoardConnect.Areas.Api.Services
                           orderby enp.CreatedAt descending
                           select new PostViewModel
                           {
-                              UserName = enp.User.UserName,
+                              UserName = enp.User.DisplayName,
                               Text = enp.Text,
                               At = enp.CreatedAt.ToString("yyyy/MM/dd HH:mm:ss"),
                               Bad = 20,

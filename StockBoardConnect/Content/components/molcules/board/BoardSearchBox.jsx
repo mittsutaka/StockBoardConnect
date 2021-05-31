@@ -3,7 +3,7 @@ import React from 'react';
 import { useState, useEffect, useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
-import AppContext from '../../../contexts/AppContext.js';
+import BoardContext from '../../../contexts/BoardContext.js';
 
 const useStyles = makeStyles((theme) => ({
     wrapper: {
@@ -30,7 +30,7 @@ export const BoardSearchBox = (props) => {
     const classes = useStyles();
     const [searchText, setSearchText] = useState("");
     const [companies, setCompanies] = useState();
-    const [company, setCompany] = useContext(AppContext);
+    const [company, setCompany] = useContext(BoardContext);
     useEffect(() => {
         if (searchText) {
             const searchCompanies = async () => {

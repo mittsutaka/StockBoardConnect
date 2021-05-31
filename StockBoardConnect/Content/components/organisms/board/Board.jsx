@@ -3,7 +3,7 @@ import { BoardList } from '../../molcules/board/BoardList.jsx';
 import { BoardMain } from '../../molcules/board/BoardMain.jsx';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import BoardContext from '../../../contexts/AppContext.js';
+import BoardContext from '../../../contexts/BoardContext.js';
 import { HubConnectionBuilder } from "@microsoft/signalr";
 
 const useStyles = makeStyles((theme) => ({
@@ -23,7 +23,8 @@ export const Board = () => {
     const [company, setCompany] = useState({
         id: "",
         name: "",
-        at: ""
+        at: "",
+        code: "",
     });
     const [favoriteCompanies, setFavoriteCompanies] = useState([]);
     const [connection, setConnection] = useState(null);

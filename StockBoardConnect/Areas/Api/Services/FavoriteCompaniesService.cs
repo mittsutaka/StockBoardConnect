@@ -44,5 +44,17 @@ namespace StockBoardConnect.Areas.Api.Services
             }
             catch { return null; }
         }
-    }
+
+        public async Task<bool> RemoveAsync(FavoriteCompany fc)
+        {
+            try
+            {
+                _context.FavoriteCompanies.Remove(fc);
+                await _context.SaveChangesAsync();
+
+                return true;
+            }
+            catch { return false; }
+        }
+    } 
 }

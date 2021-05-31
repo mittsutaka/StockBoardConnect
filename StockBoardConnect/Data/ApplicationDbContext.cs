@@ -22,6 +22,9 @@ namespace StockBoardConnect.Data
 
             modelBuilder.Entity<FavoriteCompany>()
                 .HasKey(c => new { c.UserId, c.CompanyId });
+
+            modelBuilder.Entity<ApplicationUser>()
+                .HasIndex(c => c.DisplayName).IsUnique();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StockBoardConnect.Areas.Api.Models;
 using StockBoardConnect.Areas.Api.Services;
+using System;
 using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace StockBoardConnect.Areas.Api.Controllers
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var favoriteCompanies = await _service.GetFavoriteCompaniesAsync(userId);
-            
+
             Response.StatusCode = (int)HttpStatusCode.OK;
 
             return new JsonResult(favoriteCompanies);
@@ -44,6 +45,23 @@ namespace StockBoardConnect.Areas.Api.Controllers
             Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
             return new JsonResult("エラーが発生しました。");
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(Guid companyId)
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            var fc = await _service.GetAsync(companyId, userId);
+
+            if (await _service.RemoveAsync(fc))
+            {
+                Response.StatusCode = (int)HttpStatusCode.NoContent;
+                return new JsonResult("");
+            }
+
+            Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            return new JsonResult("エラーが発生しました");
         }
     }
 }
