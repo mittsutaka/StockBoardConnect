@@ -32,6 +32,11 @@ namespace StockBoardConnect.Services
                 csv.ReadHeader();
                 list = csv.GetRecords<Company>().ToList();
             }
+
+            var createdAt = DateTimeOffset.Now;
+
+            list.ForEach(t => t.CreatedAt = createdAt);
+
             await _context.Companies.AddRangeAsync(list);
             await _context.SaveChangesAsync();
 

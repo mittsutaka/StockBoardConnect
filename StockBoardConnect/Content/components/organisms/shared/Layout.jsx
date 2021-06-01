@@ -1,10 +1,13 @@
-﻿import React from 'react';
+﻿import React, { useState } from 'react';
 import { Header } from '../../molcules/shared/Header.jsx';
 import { SideMenu } from '../../molcules/shared/SideMenu.jsx';
 import { Grid, Container } from '@material-ui/core';
 import { Loading } from '../../molcules/shared/Loading.jsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Color from '../../../consts/Color.js';
+import AppContext from '../../../contexts/AppContext.js';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     main: {
@@ -14,8 +17,9 @@ const useStyles = makeStyles((theme) => ({
     body: {
         paddingTop: '64px',
         minHeight: '100vh',
+        height: '100vh',
         display: 'flex',
-        alignItems:'stretch'
+        overflow: 'hidden'
     },
     side: {
         borderRight: `1px solid ${Color.BORDER}`,
@@ -27,23 +31,29 @@ const useStyles = makeStyles((theme) => ({
     },
     content: {
         flex: 1
-    },
-    sideMenu: {
-        position: 'fixed'
     }
 }));
 
 export const Layout = (props) => {
     const classes = useStyles();
+    const [user, setUser] = useState();
+    useEffect(() => {
+        const fecthAuthUser = async () => {
+            const url = '/Api/Users/me';
+            const res = await axios.get(url);
+            setUser(res.data);
+        }
+        fecthAuthUser();
+    }, [])
     return (
-        <>
+        <AppContext.Provider value={[user, setUser]} >
             <Loading />
             <div className={classes.main}>
-                <Header />
+                <Header userName={user?.displayName} />
                 <Container className={classes.body}>
                     <Grid container wrap='nowrap'>
                         <Grid item container className={classes.side} >
-                            <SideMenu className={classes.sideMenu} />
+                            <SideMenu />
                         </Grid>
                         <Grid item className={classes.content}>
                             {props.children}
@@ -51,6 +61,6 @@ export const Layout = (props) => {
                     </Grid>
                 </Container>
             </div>
-        </>
+        </AppContext.Provider>
     )
 }

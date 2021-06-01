@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const Header = () => {
+export const Header = (props) => {
     const classes = useStyles();
     return (
         <AppBar className={classes.bar} position='fixed'>
@@ -24,7 +24,8 @@ export const Header = () => {
                 <Toolbar>
                     <Typography variant='h6' className={classes.title}>
                         Stock Board Connect
-                </Typography>
+                    </Typography>
+                    <Typography variant='subtitle1'>{props.userName}</Typography>
                     <Button color='primary'>要望はこちら</Button>
                     <Link href='/Account/Login' color='primary'>Login</Link>
                 </Toolbar>
