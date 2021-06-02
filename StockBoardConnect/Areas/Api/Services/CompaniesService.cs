@@ -22,5 +22,10 @@ namespace StockBoardConnect.Areas.Api.Services
                           where enc.Code.ToString().Contains(keyword) || enc.Name.Contains(keyword)
                           select enc).Take(take).ToListAsync();
         }
+
+        public async Task<Company> GetByIdAsync(Guid id)
+        {
+            return await _context.Companies.FirstOrDefaultAsync(t => t.Id == id);
+        }
     }
 }

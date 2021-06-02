@@ -20,9 +20,17 @@ namespace StockBoardConnect.Areas.Api.Controllers
             _service = service;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Get(string keyword, int take)
         {
             var companies = await _service.GetCompaniesAsync(keyword, take);
+            return new JsonResult(companies);
+        }
+
+        [HttpGet("{id:Guid}")]
+        public async Task<IActionResult> GetById(Guid id)
+        {
+            var companies = await _service.GetByIdAsync(id);
             return new JsonResult(companies);
         }
     }

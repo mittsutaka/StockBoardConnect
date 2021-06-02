@@ -5,6 +5,7 @@ import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import BoardContext from '../../../contexts/BoardContext.js';
 import { HubConnectionBuilder } from "@microsoft/signalr";
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     list: {
@@ -18,13 +19,13 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export const Board = () => {
+export const Board = (props) => {
     const classes = useStyles();
     const [company, setCompany] = useState({
-        id: "",
-        name: "",
-        at: "",
-        code: "",
+        id: '',
+        name: '',
+        at: '',
+        code: '',
     });
     const [favoriteCompanies, setFavoriteCompanies] = useState([]);
     const [connection, setConnection] = useState(null);
@@ -49,6 +50,18 @@ export const Board = () => {
             })
         }
     }, [connection]);
+
+    useEffect(() => {
+        const fecthCompany = async () => {
+            const url = `/Api/Companies/${props.companyId}`;
+            const res = await axios.get(url);
+            setCompany(prev => ({ ...prev, ...res.data }));
+        }
+
+        if (props.companyId) {
+            fecthCompany();
+        }
+    }, [])
 
     return (
         <BoardContext.Provider value={[company, setCompany, favoriteCompanies, setFavoriteCompanies]}>

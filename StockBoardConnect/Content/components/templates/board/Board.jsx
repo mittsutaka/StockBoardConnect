@@ -2,10 +2,10 @@
 import { Board } from '../../organisms/board/Board.jsx';
 import { Layout } from '../../organisms/shared/Layout.jsx';
 
-export const BoardBoard = () => {
+export const BoardIndex = (props) => {
     return (
         <Layout>
-            <Board />
+            <Board companyId={props.id} />
         </Layout>
     )
 }
