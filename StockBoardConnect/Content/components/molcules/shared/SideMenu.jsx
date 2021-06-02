@@ -12,6 +12,10 @@ const useStyles = makeStyles((theme) => ({
     },
     item: {
         minHeight: theme.spacing(6)
+    },
+    selected: {
+        color: '#3da9fc',
+        fontWeight: 'bold'
     }
 }));
 
@@ -47,11 +51,12 @@ export const SideMenu = (props) => {
         <List className={props.className} component='nav'>
             {
                 datas.map((t, i) => {
+                    const isSelected = t.text == 'ボード';
                     return (
-                        <ListItem className={classes.item} button key={i}>
-                            <ListItemIcon className={classes.icon}><Icon>{t.icon}</Icon></ListItemIcon>
+                        <ListItem className={`${classes.item}`} button key={i}>
+                            <ListItemIcon className={`${classes.icon} ${isSelected && classes.selected}`}><Icon>{t.icon}</Icon></ListItemIcon>
                             <Hidden smDown>
-                                <ListItemText className={classes.text} primary={t.text} />
+                                <ListItemText primaryTypographyProps={{ className: isSelected && classes.selected }} className={classes.text} primary={t.text} />
                             </Hidden>
                         </ListItem>
                     )
