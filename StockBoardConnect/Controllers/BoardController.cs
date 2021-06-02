@@ -20,13 +20,7 @@ namespace StockBoardConnect.Controllers
         {
             _service = service;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        [Route("[controller]/{id:int}")]
-        public async Task<IActionResult> Board(int id)
+        public IActionResult Index(Guid? id)
         {
             return View(id);
         }

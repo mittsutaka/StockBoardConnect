@@ -8,6 +8,7 @@ import Color from '../../../consts/Color.js';
 import AppContext from '../../../contexts/AppContext.js';
 import { useEffect } from 'react';
 import axios from 'axios';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     main: {
@@ -47,20 +48,22 @@ export const Layout = (props) => {
     }, [])
     return (
         <AppContext.Provider value={[user, setUser]} >
-            <Loading />
-            <div className={classes.main}>
-                <Header userName={user?.displayName} />
-                <Container className={classes.body}>
-                    <Grid container wrap='nowrap'>
-                        <Grid item container className={classes.side} >
-                            <SideMenu />
+            <Router>
+                <Loading />
+                <div className={classes.main}>
+                    <Header userName={user?.displayName} />
+                    <Container className={classes.body}>
+                        <Grid container wrap='nowrap'>
+                            <Grid item container className={classes.side} >
+                                <SideMenu />
+                            </Grid>
+                            <Grid item className={classes.content}>
+                                {props.children}
+                            </Grid>
                         </Grid>
-                        <Grid item className={classes.content}>
-                            {props.children}
-                        </Grid>
-                    </Grid>
-                </Container>
-            </div>
+                    </Container>
+                </div>
+            </Router>
         </AppContext.Provider>
     )
 }
