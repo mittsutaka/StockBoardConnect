@@ -56,7 +56,7 @@ export const SideMenu = (props) => {
                         <ListItem className={`${classes.item}`} button key={i}>
                             <ListItemIcon className={`${classes.icon} ${isSelected && classes.selected}`}><Icon>{t.icon}</Icon></ListItemIcon>
                             <Hidden smDown>
-                                <ListItemText primaryTypographyProps={{ className: isSelected && classes.selected }} className={classes.text} primary={t.text} />
+                                <ListItemText primaryTypographyProps={{ className: `${isSelected && classes.selected}` }} className={classes.text} primary={t.text} />
                             </Hidden>
                         </ListItem>
                     )
