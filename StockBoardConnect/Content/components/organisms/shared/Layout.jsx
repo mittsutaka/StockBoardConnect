@@ -55,7 +55,7 @@ export const Layout = (props) => {
                     <Container className={classes.body}>
                         <Grid container wrap='nowrap'>
                             <Grid item container className={classes.side} >
-                                <SideMenu />
+                                <SideMenu sideSelected={props.sideSelected} />
                             </Grid>
                             <Grid item className={classes.content}>
                                 {props.children}
