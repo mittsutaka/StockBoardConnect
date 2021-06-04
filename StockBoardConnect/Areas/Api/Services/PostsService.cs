@@ -44,7 +44,8 @@ namespace StockBoardConnect.Areas.Api.Services
                               Text = enp.Text,
                               At = enp.CreatedAt.ToString("yyyy/MM/dd HH:mm:ss"),
                               Bad = 20,
-                              Good = 10
+                              Good = 10,
+                              AvatarFilePath = enp.User.AvatarFilePath
                           }).ToListAsync();
         }
     }

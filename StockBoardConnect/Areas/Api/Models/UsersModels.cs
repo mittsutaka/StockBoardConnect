@@ -13,5 +13,14 @@ namespace StockBoardConnect.Areas.Api.Models
 
         [JsonProperty("displayName")]
         public string DisplayName { get; set; }
+
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        [JsonProperty("email")]
+        public string Email { get; set; }
+
+        [JsonProperty("avatarFilePath")]
+        public string AvatarFilePath { get; set; }
     }
 }

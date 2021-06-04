@@ -7,8 +7,10 @@ const useStyles = makeStyles((theme) => ({
     card: {
         minHeight: theme.spacing(8),
     },
+    header: {
+        padding: theme.spacing(0.5)
+    },
     name: {
-        paddingLeft: theme.spacing(1),
         alignItems: 'center'
     },
     at: {
@@ -28,9 +30,9 @@ const useStyles = makeStyles((theme) => ({
     reply: {
         color: 'rgba(0, 0, 0, 0.54)'
     },
-    avator: {
-        width: theme.spacing(3),
-        height: theme.spacing(3),
+    avatar: {
+        width: theme.spacing(3.5),
+        height: theme.spacing(3.5),
         marginRight: '4px'
     },
     iconButton: {
@@ -42,9 +44,9 @@ export const PostItem = (props) => {
     const classes = useStyles();
     return (
         <Card className={classes.card}>
-            <Grid container alignItems='center'>
+            <Grid container alignItems='center' className={classes.header}>
                 <Grid container item xs={6} className={classes.name}>
-                    <Avatar className={classes.avator}>H</Avatar>
+                    <Avatar alt={props.postData.userName} className={classes.avatar} src={props.postData.avatarFilePath}></Avatar>
                     <Typography variant='subtitle2'>{props.postData.userName}</Typography>
                 </Grid>
                 <Grid item xs={6} className={classes.at}>

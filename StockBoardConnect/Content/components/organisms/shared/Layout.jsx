@@ -1,7 +1,7 @@
 ﻿import React, { useState } from 'react';
 import { Header } from '../../molcules/shared/Header.jsx';
 import { SideMenu } from '../../molcules/shared/SideMenu.jsx';
-import { Grid, Container } from '@material-ui/core';
+import { Grid, Container, Hidden } from '@material-ui/core';
 import { Loading } from '../../molcules/shared/Loading.jsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Color from '../../../consts/Color.js';
@@ -9,6 +9,7 @@ import AppContext from '../../../contexts/AppContext.js';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { RightZone } from '../../molcules/shared/RightZone.jsx';
 
 const useStyles = makeStyles((theme) => ({
     main: {
@@ -31,7 +32,11 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     content: {
-        flex: 1
+        flex: 1,
+        display: 'flex'
+    },
+    rightZone: {
+        overflow: 'auto'
     }
 }));
 
@@ -51,14 +56,24 @@ export const Layout = (props) => {
             <Router>
                 <Loading />
                 <div className={classes.main}>
-                    <Header userName={user?.displayName} />
+                    <Header userName={user?.displayName} avatarFilePath={user?.avatarFilePath} />
                     <Container className={classes.body}>
                         <Grid container wrap='nowrap'>
                             <Grid item container className={classes.side} >
                                 <SideMenu sideSelected={props.sideSelected} />
                             </Grid>
                             <Grid item className={classes.content}>
-                                {props.children}
+                                <Grid item sm={12} md={props.hasRightZone ? 8 : 12}  >
+                                    {props.children}
+                                </Grid>
+                                {
+                                    props.hasRightZone &&
+                                    <Grid className={classes.rightZone} item md={4} >
+                                        <Hidden smDown>
+                                            <RightZone />
+                                        </Hidden>
+                                    </Grid>
+                                }
                             </Grid>
                         </Grid>
                     </Container>

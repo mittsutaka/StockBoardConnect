@@ -7,6 +7,7 @@ using StockBoardConnect.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace StockBoardConnect.Areas.Api.Controllers
@@ -18,7 +19,7 @@ namespace StockBoardConnect.Areas.Api.Controllers
         private readonly UsersService _service;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public UsersController(UserManager<ApplicationUser> userManager,UsersService service)
+        public UsersController(UserManager<ApplicationUser> userManager, UsersService service)
         {
             _userManager = userManager;
             _service = service;
@@ -32,10 +33,28 @@ namespace StockBoardConnect.Areas.Api.Controllers
             var model = new UserResponseModel()
             {
                 Id = user.Id,
-                DisplayName = user.DisplayName
+                DisplayName = user.DisplayName,
+                AvatarFilePath = user.AvatarFilePath,
+                Description = user.Description,
+                Email = user.Email
             };
 
             return new JsonResult(model);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Put(string id, ApplicationUser user)
+        {
+            if (id != user.Id)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return new JsonResult("エラー");
+            }
+
+            await _userManager.UpdateAsync(user);
+
+            Response.StatusCode = (int)HttpStatusCode.NoContent;
+            return new JsonResult(null);
         }
     }
 }
