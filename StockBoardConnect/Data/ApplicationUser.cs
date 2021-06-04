@@ -23,5 +23,6 @@ namespace StockBoardConnect.Data
         [NotMapped]
         public string AvatarFilePath => AvatarFileKey != null ? $"/img/avatars/{AvatarFileKey}.{Extension}" : "";
 
+        public ICollection<Post> Posts { get; set; }
     }
 }

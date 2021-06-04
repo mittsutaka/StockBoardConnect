@@ -33,15 +33,16 @@ const useStyles = makeStyles((theme) => ({
     },
     content: {
         flex: 1,
-        display: 'flex'
+        display: 'flex',
+        overflow: p => p.overflow
     },
     rightZone: {
-        overflow: 'auto'
     }
 }));
 
 export const Layout = (props) => {
-    const classes = useStyles();
+    const p = { overflow: props.overflow ? 'auto' : 'inherit' };
+    const classes = useStyles(p);
     const [user, setUser] = useState();
     useEffect(() => {
         const fecthAuthUser = async () => {
@@ -62,7 +63,7 @@ export const Layout = (props) => {
                             <Grid item container className={classes.side} >
                                 <SideMenu sideSelected={props.sideSelected} />
                             </Grid>
-                            <Grid item className={classes.content}>
+                            <Grid item className={classes.content} >
                                 <Grid item sm={12} md={props.hasRightZone ? 8 : 12}  >
                                     {props.children}
                                 </Grid>

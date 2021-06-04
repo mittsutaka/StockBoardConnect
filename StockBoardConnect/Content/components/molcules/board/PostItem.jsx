@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import { Card, CardContent, Typography, CardActions, Grid, IconButton, Box, Button, Avatar } from '@material-ui/core';
+import { Card, CardContent, Typography, CardActions, Grid, IconButton, Box, Button, Avatar,Link } from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -43,11 +43,19 @@ const useStyles = makeStyles((theme) => ({
 export const PostItem = (props) => {
     const classes = useStyles();
     return (
-        <Card className={classes.card}>
+        <Card className={classes.card} elevation={props.elevation}>
             <Grid container alignItems='center' className={classes.header}>
                 <Grid container item xs={6} className={classes.name}>
-                    <Avatar alt={props.postData.userName} className={classes.avatar} src={props.postData.avatarFilePath}></Avatar>
-                    <Typography variant='subtitle2'>{props.postData.userName}</Typography>
+                    {
+                        !props.nameIgnore ?
+                        <>
+                            <Avatar alt={props.postData.userName} className={classes.avatar} src={props.postData.avatarFilePath}></Avatar>
+                            <Typography variant='subtitle2'>{props.postData.userName}</Typography>
+                            </> :
+                            <Link href={`/board/index/${props.postData.companyId}`}>
+                                <Typography variant='subtitle2'>{props.postData.companyName}</Typography>
+                            </Link>
+                    }
                 </Grid>
                 <Grid item xs={6} className={classes.at}>
                     <Typography variant='overline'>{props.postData.at}</Typography>

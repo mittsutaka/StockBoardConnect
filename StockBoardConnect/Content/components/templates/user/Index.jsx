@@ -5,7 +5,7 @@ import { Hidden, Grid } from '@material-ui/core';
 
 export const UserIndex = (props) => {
     return (
-        <Layout sideSelected='プロフィール' hasRightZone>
+        <Layout sideSelected='プロフィール' hasRightZone overflow>
             <Profile />
         </Layout>
     )

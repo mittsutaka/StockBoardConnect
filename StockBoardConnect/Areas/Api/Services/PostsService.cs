@@ -48,5 +48,24 @@ namespace StockBoardConnect.Areas.Api.Services
                               AvatarFilePath = enp.User.AvatarFilePath
                           }).ToListAsync();
         }
+
+        public async Task<List<PostViewModel>> GetPostsByUserIdAsync(string userId)
+        {
+            return await (from enu in _context.Users
+                          where enu.Id == userId
+                          from enp in enu.Posts
+                          orderby enp.CreatedAt descending
+                          select new PostViewModel
+                          {
+                              UserName = enp.User.DisplayName,
+                              Text = enp.Text,
+                              At = enp.CreatedAt.ToString("yyyy/MM/dd HH:mm:ss"),
+                              Bad = 20,
+                              Good = 10,
+                              AvatarFilePath = enp.User.AvatarFilePath,
+                              companyId = enp.CompanyId,
+                              companyName = enp.Company.Name
+                          }).ToListAsync();
+        }
     }
 }
