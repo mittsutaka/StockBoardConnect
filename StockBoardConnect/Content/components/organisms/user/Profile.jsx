@@ -91,8 +91,8 @@ export const Profile = (props) => {
                                 )
                             })
                         }
-                    </List>
-                    <UserEditModal open={open} handleClose={handleClose} />
+                </List>
+                <UserEditModal open={open} handleClose={handleClose} />
                 </>
             }
         </Grid >

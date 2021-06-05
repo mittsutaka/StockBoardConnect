@@ -42,16 +42,21 @@ namespace StockBoardConnect.Areas.Api.Controllers
             return new JsonResult(model);
         }
 
-        [HttpPut]
-        public async Task<IActionResult> Put(string id, ApplicationUser user)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Patch(string id, ApplicationUser editUser)
         {
-            if (id != user.Id)
+            if (id != editUser.Id)
             {
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return new JsonResult("エラー");
             }
 
-            await _userManager.UpdateAsync(user);
+            var user = await _userManager.GetUserAsync(User);
+            user.Description = editUser.Description;
+            user.DisplayName = editUser.DisplayName;
+            user.Email = editUser.Email;
+
+            var res = await _userManager.UpdateAsync(user);
 
             Response.StatusCode = (int)HttpStatusCode.NoContent;
             return new JsonResult(null);
