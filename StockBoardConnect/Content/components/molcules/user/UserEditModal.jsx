@@ -30,7 +30,7 @@ export const UserEditModal = (props) => {
     const handleClickSubmit = async () => {
         try {
             const url = `Api/Users/${user.id}`;
-            const res = await axios.put(url, editUserData);
+            const res = await axios.patch(url, editUserData);
             props.handleClose();
             setUser(editUserData);
         }

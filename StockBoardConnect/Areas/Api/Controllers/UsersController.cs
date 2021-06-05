@@ -42,7 +42,7 @@ namespace StockBoardConnect.Areas.Api.Controllers
             return new JsonResult(model);
         }
 
-        [HttpPut("{id}")]
+        [HttpPatch("{id}")]
         public async Task<IActionResult> Patch(string id, ApplicationUser editUser)
         {
             if (id != editUser.Id)

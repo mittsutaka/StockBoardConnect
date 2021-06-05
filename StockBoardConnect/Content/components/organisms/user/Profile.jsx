@@ -28,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
     },
     listItem: {
         width: "100%",
+    },
+    description: {
+        whiteSpace: 'pre-wrap',
     }
 }));
 
@@ -75,7 +78,7 @@ export const Profile = (props) => {
                         <Typography variant='body1'>メールアドレス：{user?.email}</Typography>
                     </Grid>
                     <Grid className={classes.item}>
-                        <Typography variant='body2'>自己紹介：{user?.description}</Typography>
+                        <Typography className={classes.description} variant='body2'>自己紹介：{user?.description}</Typography>
                     </Grid>
                     <Typography variant='h6'>投稿履歴</Typography>
 
@@ -91,8 +94,8 @@ export const Profile = (props) => {
                                 )
                             })
                         }
-                </List>
-                <UserEditModal open={open} handleClose={handleClose} />
+                    </List>
+                    <UserEditModal open={open} handleClose={handleClose} />
                 </>
             }
         </Grid >

@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import { Card, CardContent, Typography, CardActions, Grid, IconButton, Box, Button, Avatar,Link } from '@material-ui/core';
+import { Card, CardContent, Typography, CardActions, Grid, IconButton, Box, Button, Avatar, Link } from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -37,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
     },
     iconButton: {
         marginRight: '4px'
+    },
+    text: {
+        whiteSpace: 'pre-wrap'
     }
 }));
 
@@ -48,9 +51,9 @@ export const PostItem = (props) => {
                 <Grid container item xs={6} className={classes.name}>
                     {
                         !props.nameIgnore ?
-                        <>
-                            <Avatar alt={props.postData.userName} className={classes.avatar} src={props.postData.avatarFilePath}></Avatar>
-                            <Typography variant='subtitle2'>{props.postData.userName}</Typography>
+                            <>
+                                <Avatar alt={props.postData.userName} className={classes.avatar} src={props.postData.avatarFilePath}></Avatar>
+                                <Typography variant='subtitle2'>{props.postData.userName}</Typography>
                             </> :
                             <Link href={`/board/index/${props.postData.companyId}`}>
                                 <Typography variant='subtitle2'>{props.postData.companyName}</Typography>
@@ -62,7 +65,7 @@ export const PostItem = (props) => {
                 </Grid>
             </Grid>
             <CardContent className={classes.message}>
-                <Typography variant='body2'>{props.postData.text}</Typography>
+                <Typography className={classes.text} variant='body2'>{props.postData.text}</Typography>
             </CardContent>
             <CardActions className={classes.bottom}>
                 <Box component='span' className={classes.thumb}>

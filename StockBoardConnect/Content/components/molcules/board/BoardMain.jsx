@@ -132,7 +132,7 @@ export const BoardMain = (props) => {
                     <Box className={classes.postBox}>
                         <Grid container direction='column'>
                             <Grid item sm={12}>
-                                <TextField placeholder='(マナーを守って投資仲間と楽しく会話しましょう)' inputProps={{ className: classes.postInput, ref: testEl }} variant='outlined' className={classes.postTextField} fullWidth multiline rows='2'></TextField>
+                                <TextField placeholder='(マナーを守って投資仲間と楽しく会話しましょう)' inputProps={{ className: classes.postInput, ref: testEl }} variant='outlined' className={classes.postTextField} fullWidth multiline rows='3'></TextField>
                             </Grid>
                             <Grid item sm={12} className={classes.postAction}>
                                 <ButtonWithIcon variant='contained' color='primary' onClick={handlePostAsync} icon='send' iconSize='small'>投稿</ButtonWithIcon>
