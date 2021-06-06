@@ -1,9 +1,10 @@
 ﻿import React, { useContext, useState } from 'react';
-import { Grid, Typography, Box, Modal, Paper, Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
+import { Grid, Typography, Box, Modal, Paper, Button, TextField, Dialog, DialogActions, FilledInput, DialogContent, DialogTitle, InputLabel } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { ButtonWithIcon } from '../../atoms/ButtonWithIcon.jsx';
 import AppContext from '../../../contexts/AppContext.js';
 import axios from 'axios';
+import { InputFile } from '../../atoms/InputFile.jsx';
 
 const useStyles = makeStyles((theme) => ({
     textField: {
@@ -13,6 +14,11 @@ const useStyles = makeStyles((theme) => ({
         paddingRight: theme.spacing(3),
         paddingLeft: theme.spacing(3),
         paddingTop: theme.spacing(2)
+    },
+    label: {
+        fontSize: '12px',
+        paddingLeft: theme.spacing(1.5),
+        marginBottom: theme.spacing(0.5)
     }
 
 }));
@@ -45,6 +51,10 @@ export const UserEditModal = (props) => {
                 <TextField className={classes.textField} fullWidth variant='outlined' label='表示名' size='small' value={editUserData.displayName} onChange={(e) => setEditUserData({ ...editUserData, displayName: e.target.value })}></TextField>
                 <TextField className={classes.textField} fullWidth variant='outlined' label='メールアドレス' type='email' size='small' value={editUserData.email} onChange={(e) => setEditUserData({ ...editUserData, email: e.target.value })}></TextField>
                 <TextField className={classes.textField} fullWidth variant='outlined' label='自己紹介' multiline rows={5} size='small' value={editUserData.description} onChange={(e) => setEditUserData({ ...editUserData, description: e.target.value })}></TextField>
+                <Box>
+                    <InputLabel className={classes.label}>アバター画像</InputLabel>
+                    <InputFile></InputFile>
+                </Box>
             </Box>
             <DialogActions>
                 <ButtonWithIcon onClick={handleClickCancel} iconSize='small' color='primary' icon='close'>キャンセル</ButtonWithIcon>
