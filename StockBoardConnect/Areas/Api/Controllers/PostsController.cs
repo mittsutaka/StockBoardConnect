@@ -43,5 +43,14 @@ namespace StockBoardConnect.Areas.Api.Controllers
 
             return new JsonResult(true);
         }
+
+        [HttpGet("Users/{id}")]
+        public async Task<IActionResult> GetByUserId(string id)
+        {
+            if (String.IsNullOrWhiteSpace(id)) return new JsonResult(null);
+            var posts = await _service.GetPostsByUserIdAsync(id);
+
+            return new JsonResult(posts);
+        }
     }
 }

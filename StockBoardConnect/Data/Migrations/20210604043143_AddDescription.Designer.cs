@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StockBoardConnect.Data;
 
 namespace StockBoardConnect.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210604043143_AddDescription")]
+    partial class AddDescription
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -158,8 +160,8 @@ namespace StockBoardConnect.Data.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<string>("AvatarFileKey")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid?>("AvatarFileKey")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -430,7 +432,7 @@ namespace StockBoardConnect.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("StockBoardConnect.Data.ApplicationUser", "User")
-                        .WithMany("Posts")
+                        .WithMany()
                         .HasForeignKey("UserId");
 
                     b.Navigation("Company");
@@ -455,11 +457,6 @@ namespace StockBoardConnect.Data.Migrations
                     b.Navigation("Post");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("StockBoardConnect.Data.ApplicationUser", b =>
-                {
-                    b.Navigation("Posts");
                 });
 
             modelBuilder.Entity("StockBoardConnect.Data.Post", b =>

@@ -29,5 +29,14 @@ namespace StockBoardConnect.Areas.Api.Models
 
         [JsonProperty("at")]
         public string At { get; set; }
+
+        [JsonProperty("avatarFilePath")]
+        public string AvatarFilePath { get; set; }
+
+        [JsonProperty("companyName")]
+        public string companyName { get; set; }
+
+        [JsonProperty("companyId")]
+        public Guid? companyId { get; set; }
     }
 }

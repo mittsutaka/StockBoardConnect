@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import { Card, CardContent, Typography, CardActions, Grid, IconButton, Box, Button, Avatar } from '@material-ui/core';
+import { Card, CardContent, Typography, CardActions, Grid, IconButton, Box, Button, Avatar, Link } from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -7,8 +7,10 @@ const useStyles = makeStyles((theme) => ({
     card: {
         minHeight: theme.spacing(8),
     },
+    header: {
+        padding: theme.spacing(0.5)
+    },
     name: {
-        paddingLeft: theme.spacing(1),
         alignItems: 'center'
     },
     at: {
@@ -28,31 +30,42 @@ const useStyles = makeStyles((theme) => ({
     reply: {
         color: 'rgba(0, 0, 0, 0.54)'
     },
-    avator: {
-        width: theme.spacing(3),
-        height: theme.spacing(3),
+    avatar: {
+        width: theme.spacing(3.5),
+        height: theme.spacing(3.5),
         marginRight: '4px'
     },
     iconButton: {
         marginRight: '4px'
+    },
+    text: {
+        whiteSpace: 'pre-wrap'
     }
 }));
 
 export const PostItem = (props) => {
     const classes = useStyles();
     return (
-        <Card className={classes.card}>
-            <Grid container alignItems='center'>
+        <Card className={classes.card} elevation={props.elevation}>
+            <Grid container alignItems='center' className={classes.header}>
                 <Grid container item xs={6} className={classes.name}>
-                    <Avatar className={classes.avator}>H</Avatar>
-                    <Typography variant='subtitle2'>{props.postData.userName}</Typography>
+                    {
+                        !props.nameIgnore ?
+                            <>
+                                <Avatar alt={props.postData.userName} className={classes.avatar} src={`/${props.postData.avatarFilePath}`}></Avatar>
+                                <Typography variant='subtitle2'>{props.postData.userName}</Typography>
+                            </> :
+                            <Link href={`/board/index/${props.postData.companyId}`}>
+                                <Typography variant='subtitle2'>{props.postData.companyName}</Typography>
+                            </Link>
+                    }
                 </Grid>
                 <Grid item xs={6} className={classes.at}>
                     <Typography variant='overline'>{props.postData.at}</Typography>
                 </Grid>
             </Grid>
             <CardContent className={classes.message}>
-                <Typography variant='body2'>{props.postData.text}</Typography>
+                <Typography className={classes.text} variant='body2'>{props.postData.text}</Typography>
             </CardContent>
             <CardActions className={classes.bottom}>
                 <Box component='span' className={classes.thumb}>

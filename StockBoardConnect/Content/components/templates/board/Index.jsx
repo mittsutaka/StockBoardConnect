@@ -4,7 +4,7 @@ import { Layout } from '../../organisms/shared/Layout.jsx';
 
 export const BoardIndex = (props) => {
     return (
-        <Layout>
+        <Layout sideSelected='ボード'>
             <Board companyId={props.id} />
         </Layout>
     )

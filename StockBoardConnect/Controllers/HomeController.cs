@@ -18,7 +18,7 @@ namespace StockBoardConnect.Controllers
 
         public IActionResult Index()
         {
-            return RedirectToAction("Index","Board");
+            return View();
         }
 
         public IActionResult Privacy()

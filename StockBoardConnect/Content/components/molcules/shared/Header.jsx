@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import { AppBar, Toolbar, Typography, Button, Container, Link, Icon, Box } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, Button, Container, Link, Icon, Box, Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Color from '../../../consts/Color.js';
 
@@ -19,7 +19,12 @@ const useStyles = makeStyles((theme) => ({
     },
     logo: {
         marginRight: theme.spacing(1)
-    }
+    },
+    avatar: {
+        width: theme.spacing(3.5),
+        height: theme.spacing(3.5),
+        marginRight: '4px'
+    },
 }));
 
 export const Header = (props) => {
@@ -32,6 +37,7 @@ export const Header = (props) => {
                         <Icon fontSize='large' className={classes.logo}>account_balance</Icon>
                         <Typography variant='h6'>SHARE STOCK</Typography>
                     </Box>
+                    <Avatar alt={props.userName} className={classes.avatar} src={props.avatarFilePath}></Avatar>
                     <Typography variant='subtitle1'>{props.userName}</Typography>
                     <Button color='primary'>要望はこちら</Button>
                     <Link href='/Account/Login' color='primary'>Login</Link>
