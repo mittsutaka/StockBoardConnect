@@ -48,6 +48,8 @@ export const Layout = (props) => {
         const fecthAuthUser = async () => {
             const url = '/Api/Users/me';
             const res = await axios.get(url);
+            console.log(res.data);
+
             setUser(res.data);
         }
         fecthAuthUser();

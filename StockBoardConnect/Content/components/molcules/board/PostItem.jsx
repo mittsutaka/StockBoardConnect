@@ -52,7 +52,7 @@ export const PostItem = (props) => {
                     {
                         !props.nameIgnore ?
                             <>
-                                <Avatar alt={props.postData.userName} className={classes.avatar} src={props.postData.avatarFilePath}></Avatar>
+                                <Avatar alt={props.postData.userName} className={classes.avatar} src={`/${props.postData.avatarFilePath}`}></Avatar>
                                 <Typography variant='subtitle2'>{props.postData.userName}</Typography>
                             </> :
                             <Link href={`/board/index/${props.postData.companyId}`}>

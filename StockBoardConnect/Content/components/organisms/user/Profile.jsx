@@ -67,7 +67,7 @@ export const Profile = (props) => {
                 <>
                     <Grid container direction="row" className={classes.item}>
                         <Grid className={classes.avatarWrapper}>
-                            <Avatar alt={user?.displayName} className={classes.avatar} src={user?.avatarFilePath}></Avatar>
+                            <Avatar alt={user?.displayName} className={classes.avatar} src={`/${user?.avatarFilePath}`}></Avatar>
                             <Typography variant='h4'>{user?.displayName}</Typography>
                         </Grid>
                         <Grid className={classes.editWrapper}>

@@ -96,6 +96,7 @@ export const BoardMain = (props) => {
             if (company.id) {
                 const url = `/Api/Posts?companyId=${company.id}`;
                 const res = await axios.get(url)
+                console.log(res.data);
                 if (res.data != null) {
                     setPosts(res.data);
                 }

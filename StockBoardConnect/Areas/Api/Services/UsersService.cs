@@ -37,6 +37,8 @@ namespace StockBoardConnect.Areas.Api.Services
         public bool AddAvatarImage(ApplicationUser user,string avatarTempPath)
         {
             var isSuccess = false;
+            var dirPath = Path.Combine(_hostEnvironment.WebRootPath, "img", "avatars");
+            Directory.CreateDirectory(dirPath);
             var oldPath = Path.Combine(_hostEnvironment.WebRootPath, user.AvatarFilePath);
             user.AvatarFileKey = Guid.NewGuid().ToString();
             user.Extension = Path.GetExtension(avatarTempPath).Replace(".","");

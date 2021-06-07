@@ -29,7 +29,7 @@ export const UserEditModal = (props) => {
     const classes = useStyles();
     const [user, setUser] = useContext(AppContext);
     const [editUserData, setEditUserData] = useState(user);
-    const [tmpImageUrl, setTempImagaUrl] = useState();
+    const [tmpImageUrl, setTempImagaUrl] = useState(user?.avatarFilePath);
 
     const handleClickCancel = () => {
         props.handleClose();
