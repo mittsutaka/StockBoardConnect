@@ -5,6 +5,7 @@ import { ButtonWithIcon } from '../../atoms/ButtonWithIcon.jsx';
 import AppContext from '../../../contexts/AppContext.js';
 import axios from 'axios';
 import { InputFile } from '../../atoms/InputFile.jsx';
+import { ErrorMessage } from '../../atoms/ErrorMessage.jsx';
 
 const useStyles = makeStyles((theme) => ({
     textField: {
@@ -30,6 +31,7 @@ export const UserEditModal = (props) => {
     const [user, setUser] = useContext(AppContext);
     const [editUserData, setEditUserData] = useState(user);
     const [tmpImageUrl, setTempImagaUrl] = useState(user?.avatarFilePath);
+    const [errorMessage, setErrorMessage] = useState();
 
     const handleClickCancel = () => {
         props.handleClose();
@@ -45,6 +47,7 @@ export const UserEditModal = (props) => {
         }
         catch (error) {
             console.log(error);
+            setErrorMessage(error.data);
         }
     }
 
@@ -61,8 +64,8 @@ export const UserEditModal = (props) => {
             setEditUserData({
                 ...editUserData, avatarFileTempPath: res.data
             })
-        } catch {
-
+        } catch (error) {
+            setErrorMessage(error.response.data);
         }
     }
 
@@ -70,9 +73,12 @@ export const UserEditModal = (props) => {
         <Dialog open={props.open} onClose={props.handleClose}>
             <DialogTitle >プロフィール編集</DialogTitle>
             <Box className={classes.body}>
-                <Box className={ classes.avatarBox}>
-                    <InputLabel className={classes.label}>アバター画像</InputLabel>
+                <Box className={classes.avatarBox}>
+                    <InputLabel className={classes.label}>アバター画像(3MB以下)</InputLabel>
                     <InputFile imgSrc={tmpImageUrl} onChange={handleFileChange}></InputFile>
+                    {
+                        errorMessage && <ErrorMessage text={errorMessage} />
+                    }
                 </Box>
                 <TextField className={classes.textField} fullWidth variant='outlined' label='表示名' size='small' value={editUserData.displayName} onChange={(e) => setEditUserData({ ...editUserData, displayName: e.target.value })}></TextField>
                 <TextField className={classes.textField} fullWidth variant='outlined' label='メールアドレス' type='email' size='small' value={editUserData.email} onChange={(e) => setEditUserData({ ...editUserData, email: e.target.value })}></TextField>

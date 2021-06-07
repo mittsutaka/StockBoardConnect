@@ -51,7 +51,7 @@ export const InputFile = (props) => {
                 }
                 <Icon className={classes.icon}>add_a_photo</Icon>
             </label>
-            <input id='fileInput' multiple className={classes.input} type='file' onChange={props.onChange} />
+            <input id='fileInput' className={classes.input} type='file' onChange={props.onChange} />
         </Box>
     )
 }

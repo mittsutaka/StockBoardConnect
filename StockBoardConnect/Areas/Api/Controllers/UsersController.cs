@@ -81,6 +81,12 @@ namespace StockBoardConnect.Areas.Api.Controllers
         [HttpPost("{id}/Files/Avatar")]
         public async Task<IActionResult> PostAvatarImage(string id, IFormFile file)
         {
+            if (!_service.ValidateFileSize(file))
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return new JsonResult("選択した画像は3MBを越えています。");
+            }
+
             var url = await _service.StoreAvatarImageAsync(id, file);
 
             return new JsonResult(url);
