@@ -56,10 +56,34 @@ namespace StockBoardConnect.Areas.Api.Controllers
             user.DisplayName = editUser.DisplayName;
             user.Email = editUser.Email;
 
-            var res = await _userManager.UpdateAsync(user);
+            if (_service.AddAvatarImage(user, editUser.AvatarFileTempPath))
+            {
+                var res = await _userManager.UpdateAsync(user);
 
-            Response.StatusCode = (int)HttpStatusCode.NoContent;
-            return new JsonResult(null);
+                Response.StatusCode = (int)HttpStatusCode.OK;
+
+                var model = new UserResponseModel()
+                {
+                    Id = user.Id,
+                    DisplayName = user.DisplayName,
+                    AvatarFilePath = user.AvatarFilePath,
+                    Description = user.Description,
+                    Email = user.Email
+                };
+
+                return new JsonResult(model);
+            }
+            Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            return new JsonResult("エラーが発生しました");
+
+        }
+
+        [HttpPost("{id}/Files/Avatar")]
+        public async Task<IActionResult> PostAvatarImage(string id, IFormFile file)
+        {
+            var url = await _service.StoreAvatarImageAsync(id, file);
+
+            return new JsonResult(url);
         }
     }
 }

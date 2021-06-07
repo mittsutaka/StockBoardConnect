@@ -1,5 +1,5 @@
 ﻿import React, { useContext, useState } from 'react';
-import { Grid, Typography, Box, Modal, Paper, Button, TextField, Dialog, DialogActions, FilledInput, DialogContent, DialogTitle, InputLabel } from '@material-ui/core';
+import { Grid, Typography, Box, Modal, Paper, Button, TextField, Dialog, DialogActions, FilledInput, DialogContent, DialogTitle, InputLabel, Hidden } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { ButtonWithIcon } from '../../atoms/ButtonWithIcon.jsx';
 import AppContext from '../../../contexts/AppContext.js';
@@ -19,14 +19,17 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '12px',
         paddingLeft: theme.spacing(1.5),
         marginBottom: theme.spacing(0.5)
+    },
+    avatarBox: {
+        marginBottom: theme.spacing(3)
     }
-
 }));
 
 export const UserEditModal = (props) => {
     const classes = useStyles();
     const [user, setUser] = useContext(AppContext);
     const [editUserData, setEditUserData] = useState(user);
+    const [tmpImageUrl, setTempImagaUrl] = useState();
 
     const handleClickCancel = () => {
         props.handleClose();
@@ -38,9 +41,28 @@ export const UserEditModal = (props) => {
             const url = `Api/Users/${user.id}`;
             const res = await axios.patch(url, editUserData);
             props.handleClose();
-            setUser(editUserData);
+            setUser(res.data);
         }
         catch (error) {
+            console.log(error);
+        }
+    }
+
+    const handleFileChange = async (e) => {
+        try {
+            if (!e.target.files[0]) return;
+            const url = `/Api/Users/${user.id}/Files/Avatar`;
+            const data = new FormData();
+            const headers = { "content-type": "multipart/form-data" };
+            data.append('file', e.target.files[0]);
+
+            const res = await axios.post(url, data, { headers });
+            setTempImagaUrl(res.data);
+            setEditUserData({
+                ...editUserData, avatarFileTempPath: res.data
+            })
+        } catch {
+
         }
     }
 
@@ -48,13 +70,13 @@ export const UserEditModal = (props) => {
         <Dialog open={props.open} onClose={props.handleClose}>
             <DialogTitle >プロフィール編集</DialogTitle>
             <Box className={classes.body}>
+                <Box className={ classes.avatarBox}>
+                    <InputLabel className={classes.label}>アバター画像</InputLabel>
+                    <InputFile imgSrc={tmpImageUrl} onChange={handleFileChange}></InputFile>
+                </Box>
                 <TextField className={classes.textField} fullWidth variant='outlined' label='表示名' size='small' value={editUserData.displayName} onChange={(e) => setEditUserData({ ...editUserData, displayName: e.target.value })}></TextField>
                 <TextField className={classes.textField} fullWidth variant='outlined' label='メールアドレス' type='email' size='small' value={editUserData.email} onChange={(e) => setEditUserData({ ...editUserData, email: e.target.value })}></TextField>
                 <TextField className={classes.textField} fullWidth variant='outlined' label='自己紹介' multiline rows={5} size='small' value={editUserData.description} onChange={(e) => setEditUserData({ ...editUserData, description: e.target.value })}></TextField>
-                <Box>
-                    <InputLabel className={classes.label}>アバター画像</InputLabel>
-                    <InputFile></InputFile>
-                </Box>
             </Box>
             <DialogActions>
                 <ButtonWithIcon onClick={handleClickCancel} iconSize='small' color='primary' icon='close'>キャンセル</ButtonWithIcon>

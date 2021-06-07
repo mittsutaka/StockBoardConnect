@@ -430,7 +430,7 @@ namespace StockBoardConnect.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("StockBoardConnect.Data.ApplicationUser", "User")
-                        .WithMany()
+                        .WithMany("Posts")
                         .HasForeignKey("UserId");
 
                     b.Navigation("Company");
@@ -455,6 +455,11 @@ namespace StockBoardConnect.Data.Migrations
                     b.Navigation("Post");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("StockBoardConnect.Data.ApplicationUser", b =>
+                {
+                    b.Navigation("Posts");
                 });
 
             modelBuilder.Entity("StockBoardConnect.Data.Post", b =>
