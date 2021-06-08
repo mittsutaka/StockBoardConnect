@@ -1,7 +1,7 @@
 ﻿import React, { useState } from 'react';
 import { Header } from '../../molcules/shared/Header.jsx';
 import { SideMenu } from '../../molcules/shared/SideMenu.jsx';
-import { Grid, Container, Hidden } from '@material-ui/core';
+import { Grid, Container, Hidden, Snackbar, SnackbarContent } from '@material-ui/core';
 import { Loading } from '../../molcules/shared/Loading.jsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Color from '../../../consts/Color.js';
@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { RightZone } from '../../molcules/shared/RightZone.jsx';
+import { Alert } from '../../atoms/Alert.jsx';
 
 const useStyles = makeStyles((theme) => ({
     main: {
@@ -40,10 +41,18 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+const initialSnackState = {
+    isOpen: false,
+    message: '',
+    type: ''
+}
+
 export const Layout = (props) => {
     const p = { overflow: props.overflow ? 'auto' : 'inherit' };
     const classes = useStyles(p);
     const [user, setUser] = useState();
+    const [snack, setSnack] = useState(initialSnackState);
+
     useEffect(() => {
         const fecthAuthUser = async () => {
             const url = '/Api/Users/me';
@@ -52,8 +61,13 @@ export const Layout = (props) => {
         }
         fecthAuthUser();
     }, [])
+
+    const handleSnackClose = () => {
+        setSnack(initialSnackState);
+    }
+
     return (
-        <AppContext.Provider value={[user, setUser]} >
+        <AppContext.Provider value={[user, setUser, snack, setSnack]} >
             <Router>
                 <Loading />
                 <div className={classes.main}>
@@ -79,6 +93,9 @@ export const Layout = (props) => {
                         </Grid>
                     </Container>
                 </div>
+                <Snackbar open={snack.isOpen} autoHideDuration={3000} onClose={handleSnackClose}>
+                    <Alert type={snack.type} message={snack.message} />
+                </Snackbar>
             </Router>
         </AppContext.Provider>
     )
