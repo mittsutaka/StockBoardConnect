@@ -1,11 +1,11 @@
-﻿import React, { useContext, useState } from 'react';
-import { Grid, Typography, Box, Modal, Paper, Button, TextField, Dialog, DialogActions, FilledInput, DialogContent, DialogTitle, InputLabel, Hidden } from '@material-ui/core';
+﻿import { Box, Dialog, DialogActions, DialogTitle, InputLabel, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { ButtonWithIcon } from '../../atoms/ButtonWithIcon.jsx';
-import AppContext from '../../../contexts/AppContext.js';
 import axios from 'axios';
-import { InputFile } from '../../atoms/InputFile.jsx';
+import React, { useContext, useState } from 'react';
+import AppContext from '../../../contexts/AppContext.js';
+import { ButtonWithIcon } from '../../atoms/ButtonWithIcon.jsx';
 import { ErrorMessage } from '../../atoms/ErrorMessage.jsx';
+import { InputFile } from '../../atoms/InputFile.jsx';
 
 const useStyles = makeStyles((theme) => ({
     textField: {
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const UserEditModal = (props) => {
     const classes = useStyles();
-    const [user, setUser] = useContext(AppContext);
+    const [user, setUser, snack, setSnack] = useContext(AppContext);
     const [editUserData, setEditUserData] = useState(user);
     const [tmpImageUrl, setTempImagaUrl] = useState(user?.avatarFilePath);
     const [errorMessage, setErrorMessage] = useState();
@@ -44,9 +44,9 @@ export const UserEditModal = (props) => {
             const res = await axios.patch(url, editUserData);
             props.handleClose();
             setUser(res.data);
+            setSnack(prev => ({ ...prev, isOpen: true, message: 'プロフィールを編集しました', type: 'success' }));
         }
         catch (error) {
-            console.log(error);
             setErrorMessage(error.data);
         }
     }
