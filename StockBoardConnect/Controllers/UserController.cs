@@ -12,5 +12,15 @@ namespace StockBoardConnect.Controllers
         {
             return View();
         }
+
+        public IActionResult Details(string id)
+        {
+            return View("Details");
+        }
+
+        public IActionResult Test()
+        {
+            return View();
+        }
     }
 }

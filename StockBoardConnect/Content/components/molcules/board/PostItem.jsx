@@ -40,6 +40,12 @@ const useStyles = makeStyles((theme) => ({
     },
     text: {
         whiteSpace: 'pre-wrap'
+    },
+    userLink: {
+        display: 'flex',
+        alignItems: 'center',
+        textDecoration: 'none',
+        flexDirection: 'row'
     }
 }));
 
@@ -51,10 +57,10 @@ export const PostItem = (props) => {
                 <Grid container item xs={6} className={classes.name}>
                     {
                         !props.nameIgnore ?
-                            <>
+                            <a className={classes.userLink} href={`/User/Details/${props.postData.userId}`}>
                                 <Avatar alt={props.postData.userName} className={classes.avatar} src={`/${props.postData.avatarFilePath}`}></Avatar>
                                 <Typography variant='subtitle2'>{props.postData.userName}</Typography>
-                            </> :
+                            </a> :
                             <Link href={`/board/index/${props.postData.companyId}`}>
                                 <Typography variant='subtitle2'>{props.postData.companyName}</Typography>
                             </Link>

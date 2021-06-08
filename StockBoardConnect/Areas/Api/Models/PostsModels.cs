@@ -15,7 +15,9 @@ namespace StockBoardConnect.Areas.Api.Models
 
     public class PostViewModel
     {
-        [JsonProperty("userName")]
+        [JsonProperty("userId")]
+        public string UserId { get; set; }
+
         public string UserName { get; set; }
 
         [JsonProperty("text")]
