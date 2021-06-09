@@ -25,6 +25,12 @@ const useStyles = makeStyles((theme) => ({
         height: theme.spacing(3.5),
         marginRight: '4px'
     },
+    caption: {
+        marginLeft: theme.spacing(1)
+    },
+    userName: {
+        marginRight: theme.spacing(2)
+    }
 }));
 
 export const Header = (props) => {
@@ -35,10 +41,11 @@ export const Header = (props) => {
                 <Toolbar>
                     <Box className={classes.title}>
                         <Icon fontSize='large' className={classes.logo}>account_balance</Icon>
-                        <Typography variant='h6'>SHARE STOCK</Typography>
+                        <Typography variant='h6'>SHARE STOCK </Typography>
+                        <Typography variant='caption' className={classes.caption}>~beta版~</Typography>
                     </Box>
                     <Avatar alt={props.userName} className={classes.avatar} src={props.avatarFilePath}></Avatar>
-                    <Typography variant='subtitle1'>{props.userName}</Typography>
+                    <Typography className={classes.userName} variant='subtitle1'>{props.userName}</Typography>
                     <Button color='primary'>要望はこちら</Button>
                     <Link href='/Account/Login' color='primary'>Login</Link>
                 </Toolbar>

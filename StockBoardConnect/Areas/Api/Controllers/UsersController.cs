@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using StockBoardConnect.Areas.Api.Models;
@@ -14,6 +15,7 @@ namespace StockBoardConnect.Areas.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly UsersService _service;
@@ -29,6 +31,23 @@ namespace StockBoardConnect.Areas.Api.Controllers
         public async Task<IActionResult> GetMe()
         {
             var user = await _userManager.GetUserAsync(User);
+
+            var model = new UserResponseModel()
+            {
+                Id = user.Id,
+                DisplayName = user.DisplayName,
+                AvatarFilePath = user.AvatarFilePath,
+                Description = user.Description,
+                Email = user.Email
+            };
+
+            return new JsonResult(model);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
 
             var model = new UserResponseModel()
             {
