@@ -82,7 +82,7 @@ export const UserEditModal = (props) => {
                 </Box>
                 <TextField className={classes.textField} fullWidth variant='outlined' label='表示名' size='small' value={editUserData.displayName} onChange={(e) => setEditUserData({ ...editUserData, displayName: e.target.value })}></TextField>
                 <TextField className={classes.textField} fullWidth variant='outlined' label='メールアドレス' type='email' size='small' value={editUserData.email} onChange={(e) => setEditUserData({ ...editUserData, email: e.target.value })}></TextField>
-                <TextField className={classes.textField} fullWidth variant='outlined' label='自己紹介' multiline rows={5} size='small' value={editUserData.description} onChange={(e) => setEditUserData({ ...editUserData, description: e.target.value })}></TextField>
+                <TextField className={classes.textField} fullWidth variant='outlined' label='自己紹介' multiline rows={5} size='small' value={editUserData.description ?? ""} onChange={(e) => setEditUserData({ ...editUserData, description: e.target.value })}></TextField>
             </Box>
             <DialogActions>
                 <ButtonWithIcon onClick={handleClickCancel} iconSize='small' color='primary' icon='close'>キャンセル</ButtonWithIcon>

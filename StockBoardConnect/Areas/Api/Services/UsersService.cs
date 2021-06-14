@@ -66,7 +66,7 @@ namespace StockBoardConnect.Areas.Api.Services
                     File.Copy(sourcePath, destPath);
                 }
                 catch (Exception e) { return isSuccess; }
-                File.Delete(oldPath);
+                if (File.Exists(oldPath)) File.Delete(oldPath);
                 isSuccess = true;
             }
             return isSuccess;

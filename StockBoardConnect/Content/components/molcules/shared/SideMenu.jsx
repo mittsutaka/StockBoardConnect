@@ -34,26 +34,26 @@ const datas = [{
     text: 'ボード',
     link: '/board'
 },
-{
-    icon: 'email',
-    text: 'メッセージ',
-    link: '/message'
-},
-{
-    icon: 'group',
-    text: 'フレンド',
-    link: 'friend'
-},
+//{
+//    icon: 'email',
+//    text: 'メッセージ',
+//    link: '/message'
+//},
+//{
+//    icon: 'group',
+//    text: 'フレンド',
+//    link: '/friend'
+//},
 {
     icon: 'face',
     text: 'プロフィール',
     link: '/user'
 },
-{
-    icon: 'notifications',
-    text: '通知',
-    link: '/notification'
-},
+//{
+//    icon: 'notifications',
+//    text: '通知',
+//    link: '/notification'
+//},
 ];
 
 export const SideMenu = (props) => {
