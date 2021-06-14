@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
         height: '100%'
     },
     name: {
-        flexGrow: 1
+        marginRight: theme.spacing(3)
     },
     favoriteBtnWrapper: {
         paddingRight: theme.spacing(2)
@@ -50,6 +50,12 @@ const useStyles = makeStyles((theme) => ({
     emptyBox: {
         height: '280px',
         width: '100%',
+    },
+    headerLeft: {
+        flexGrow: 1,
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center'
     }
 }));
 
@@ -96,7 +102,6 @@ export const BoardMain = (props) => {
             if (company.id) {
                 const url = `/Api/Posts?companyId=${company.id}`;
                 const res = await axios.get(url)
-                console.log(res.data);
                 if (res.data != null) {
                     setPosts(res.data);
                 }
@@ -111,7 +116,10 @@ export const BoardMain = (props) => {
             {company.id &&
                 <>
                     <Grid container className={classes.header} direction='row'>
-                        <Typography variant='subtitle1' className={classes.name}>{`${company.code} ${company.name}`}</Typography>
+                        <Grid className={classes.headerLeft}>
+                            <Typography variant='subtitle1' className={classes.name}>{`${company.code} ${company.name}`}</Typography>
+                            <Typography variant='h6' color='primary'>{`${company.currentPrice}`}</Typography>
+                        </Grid>
                         <Grid item className={classes.favoriteBtnWrapper}>
                             {
                                 !favoriteCompanies.some(t => { return t?.companyId == company?.id }) ?

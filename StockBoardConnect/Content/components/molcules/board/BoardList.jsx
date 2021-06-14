@@ -47,7 +47,7 @@ export const BoardList = (props) => {
                         const isSelected = company?.id == t.company.id;
                         return (
                             <Link to={`/Board/Index/${t.company.id}`} key={i} className={classes.link} >
-                                <ListItem className={`${isSelected && classes.selected}`} button onClick={() => setCompany(prev => ({ ...prev, id: t.company.id, name: t.company.name, code: t.company.code }))}>
+                                <ListItem className={`${isSelected && classes.selected}`} button onClick={() => setCompany(prev => ({ ...prev, id: t.company.id, name: t.company.name, code: t.company.code, currentPrice: t.company.currentPrice }))}>
                                     <Typography variant="body2" noWrap>{`${t.company.name}`}</Typography>
                                 </ListItem>
                             </Link>

@@ -15,14 +15,14 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '14px',
         maxHeight: '480px',
         overflow: 'auto',
-        zIndex:'1'
+        zIndex: '1'
     },
     search: {
         fontSize: '12px',
         padding: theme.spacing(2)
     },
     textFieldRoot: {
-        width:'100%'
+        width: '100%'
     }
 }))
 
@@ -44,7 +44,7 @@ export const BoardSearchBox = (props) => {
 
     const handleClick = (e) => {
         setSearchText('');
-        setCompany(prev => ({ ...prev, id: e.currentTarget.dataset.id, name: e.currentTarget.dataset.name, at: new Date() }));
+        setCompany(prev => ({ ...prev, id: e.currentTarget.dataset.id, name: e.currentTarget.dataset.name, at: new Date(), code: e.currentTarget.dataset.code, currentPrice: e.currentTarget.dataset.price }));
     }
 
     const handleChange = (e) => {
@@ -62,7 +62,7 @@ export const BoardSearchBox = (props) => {
                         {
                             companies?.map((t, i) => {
                                 return (
-                                    <ListItem onClick={handleClick} button key={i} data-id={t.id} data-name={t.name}>{`${t.code} ${t.name}`}</ListItem>
+                                    <ListItem onClick={handleClick} button key={i} data-id={t.id} data-name={t.name} data-code={t.code} data-price={t.currentPrice}>{`${t.code} ${t.name}`}</ListItem>
                                 )
                             })
                         }

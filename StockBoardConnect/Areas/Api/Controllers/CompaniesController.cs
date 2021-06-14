@@ -32,8 +32,8 @@ namespace StockBoardConnect.Areas.Api.Controllers
         [HttpGet("{id:Guid}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var companies = await _service.GetByIdAsync(id);
-            return new JsonResult(companies);
+            var company = await _service.GetByIdAsync(id);
+            return new JsonResult(company);
         }
     }
 }
