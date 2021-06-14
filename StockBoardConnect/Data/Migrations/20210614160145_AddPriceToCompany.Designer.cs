@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StockBoardConnect.Data;
 
 namespace StockBoardConnect.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210614160145_AddPriceToCompany")]
+    partial class AddPriceToCompany
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -246,11 +248,11 @@ namespace StockBoardConnect.Data.Migrations
                     b.Property<DateTimeOffset>("CreatedAt")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<double>("CurrentPrice")
-                        .HasColumnType("float");
+                    b.Property<int>("CurrentPrice")
+                        .HasColumnType("int");
 
-                    b.Property<double>("LastPrice")
-                        .HasColumnType("float");
+                    b.Property<int>("LastPrice")
+                        .HasColumnType("int");
 
                     b.Property<string>("MarketName")
                         .HasColumnType("nvarchar(max)");

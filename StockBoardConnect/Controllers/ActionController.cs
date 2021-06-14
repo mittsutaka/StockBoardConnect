@@ -20,5 +20,13 @@ namespace StockBoardConnect.Controllers
 
             return Content(JsonConvert.SerializeObject(res));
         }
+
+        public async Task<IActionResult> CollectStockPrice()
+        {
+
+            await _service.CollectStockPriceAsync();
+
+            return Content("取得した");
+        }
     }
 }

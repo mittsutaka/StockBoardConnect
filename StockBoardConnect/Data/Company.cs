@@ -39,6 +39,12 @@ namespace StockBoardConnect.Data
         public string ScaleCodeName { get; set; }
 
         [Ignore]
+        public double CurrentPrice { get; set; }
+        
+        [Ignore]
+        public double LastPrice { get; set; }
+
+        [Ignore]
         public DateTimeOffset CreatedAt { get; set; }
 
         [Ignore]
