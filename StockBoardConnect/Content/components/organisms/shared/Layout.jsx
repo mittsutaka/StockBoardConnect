@@ -1,15 +1,16 @@
-﻿import { Container, Grid, Hidden, Snackbar } from '@material-ui/core';
+﻿import React, { useState } from 'react';
+import { Header } from '../../molcules/shared/Header.jsx';
+import { SideMenu } from '../../molcules/shared/SideMenu.jsx';
+import { Grid, Container, Hidden, Snackbar, SnackbarContent } from '@material-ui/core';
+import { Loading } from '../../molcules/shared/Loading.jsx';
 import { makeStyles } from '@material-ui/core/styles';
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router } from "react-router-dom";
 import Color from '../../../consts/Color.js';
 import AppContext from '../../../contexts/AppContext.js';
-import { Alert } from '../../atoms/Alert.jsx';
-import { Header } from '../../molcules/shared/Header.jsx';
-import { Loading } from '../../molcules/shared/Loading.jsx';
+import { useEffect } from 'react';
+import axios from 'axios';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { RightZone } from '../../molcules/shared/RightZone.jsx';
-import { SideMenu } from '../../molcules/shared/SideMenu.jsx';
+import { Alert } from '../../atoms/Alert.jsx';
 
 const useStyles = makeStyles((theme) => ({
     main: {
@@ -70,7 +71,7 @@ export const Layout = (props) => {
             <Router>
                 <Loading />
                 <div className={classes.main}>
-                    <Header userName={user?.displayName} avatarFilePath={user ? `/${user?.avatarFilePath}` : ""} />
+                    <Header userName={user?.displayName} avatarFilePath={user?.avatarFilePath} />
                     <Container className={classes.body}>
                         <Grid container wrap='nowrap'>
                             <Grid item container className={classes.side} >
