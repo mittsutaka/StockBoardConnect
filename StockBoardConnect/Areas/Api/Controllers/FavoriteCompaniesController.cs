@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using StockBoardConnect.Areas.Api.Models;
 using StockBoardConnect.Areas.Api.Services;
 using System;
@@ -11,7 +10,6 @@ namespace StockBoardConnect.Areas.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class FavoriteCompaniesController : ControllerBase
     {
         private readonly FavoriteCompaniesService _service;

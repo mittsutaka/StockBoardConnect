@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using StockBoardConnect.Areas.Api.Services;
 using System;
@@ -12,7 +11,6 @@ namespace StockBoardConnect.Areas.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class CompaniesController : ControllerBase
     {
         private readonly CompaniesService _service;
